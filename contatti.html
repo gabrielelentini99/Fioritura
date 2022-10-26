@@ -35,8 +35,12 @@
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!--RD Navbar Brand-->
                   <div class="rd-navbar-brand">
-                    <a class="brand" href="index.html"><h5>Fioritura - Giacomo Ruffa</h5></a>
-                    <!-- <a class="brand" href="index.html"><img src="images/logo-default-296x52.png" alt="" width="148" height="26"/></a> -->
+                    <a class="brand"><h5 id="grHeader" onclick="toggleName()">Giacomo Ruffa</h5></a>
+                    <a class="brand">
+                      <h5 id="fiorituraHeader" onclick="toggleName()">Fioritura 
+                        <img class="flowerIcon" src="images/vanilla-flower-icon.svg" />
+                      </h5>
+                  </a>
                   </div>
                 </div>
                 <div class="rd-navbar-main-element">
@@ -48,7 +52,7 @@
                       </li>
                       <li class="rd-nav-item"><a class="rd-nav-link" href="typography.html">Progetti</a>
                       </li>
-                      <li class="rd-nav-item active"><a class="rd-nav-link" href="contacts.html">Contatti</a>
+                      <li class="rd-nav-item active"><a class="rd-nav-link" href="contatti.html">Contatti</a>
                       </li>
                     </ul>
                   </div>
@@ -70,11 +74,11 @@
           <!-- <h2 class="breadcrumbs-custom-title">Contacts</h2> -->
         </div>
         <ul class="breadcrumbs-custom-path">
-          <li><a href="index.html">Home / <span class="active">Contatti</span></a></li>
+          <li><a><a href="index.html">Home / </a><span class="active">Contatti</span></a></li>
           <!-- <li class="active">Contatti</li> -->
         </ul>
       </section>
-      <section class="section section-md bg-default text-center">
+      <section class="section section-md bg-default text-center contacts-box">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10">
@@ -83,7 +87,7 @@
             </div>
           </div>
           <div class="row row-50 justify-lg-content-center row-custom-border">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-3">
               <div class="box-icon-classic">
                 <div class="icon novi-icon icon-primary icon-lg fl-bigmug-line-cellphone55"></div>
                 <h5 class="box-icon-classic-title">Telefono</h5>
@@ -92,21 +96,30 @@
                 </ul>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-3">
               <div class="box-icon-classic">
                 <div class="icon novi-icon icon-primary icon-lg fl-bigmug-line-big104"></div>
                 <h5 class="box-icon-classic-title">Dove Lavoro</h5>
                 <ul class="box-icon-classic-list">
-                  <li><a href="#">Torino - Milano</a></li>
+                  <li><a>Torino - Milano</a></li>
                 </ul>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-3">
               <div class="box-icon-classic">
                 <div class="icon novi-icon icon-primary icon-md fl-bigmug-line-email64"></div>
                 <h5 class="box-icon-classic-title">e-mail</h5>
                 <ul class="box-icon-classic-list">
-                  <li><a href="mailto:fiorituramusica@gmail.com">fiorituramusica@gmail.com</a></li>
+                  <li><a href="mailto:fiorituramusica@gmail.com">Scrivimi</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+              <div class="box-icon-classic">
+                <img class="paypal-icon" alt="paypal-icon" src="images/paypal-color-icon.svg" />
+                <h5 class="box-icon-classic-title">Paypal</h5>
+                <ul class="box-icon-classic-list">
+                  <li><a href="mailto:fiorituramusica@gmail.com">Pagamenti</a></li>
                 </ul>
               </div>
             </div>
@@ -273,22 +286,16 @@
           </div>
         </div>
       </section> -->
-      <footer class="section footer-classic bg-default">
-        <div class="container">
-          <div class="row row-15">
-            <!-- <div class="col-sm-6">
-              <p class="rights"><span>DJ Fox</span><span>&nbsp;</span><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>\&nbsp;</span>All Rights Reserved
-                \ Design by <a href="https://www.templatemonster.com/">TemplateMonster</a>
-              </p>
-            </div> -->
-            <!-- <div class="col-sm-6">
-              <div class="footer-contact"><a href="contacts.html">
-                  <div class="icon novi-icon mdi mdi-email-outline"></div>Contattami</a></div>
-            </div> -->
+    </div>
+    <footer class="section footer-classic bg-default">
+      <div class="container">
+        <div class="row row-15">
+          <div class="col-sm-12 text-center footer-copyright">
+            <p>Copyright 2022 - Giacomo Ruffa</p>
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
     <div class="snackbars" id="form-output-global"></div>
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>

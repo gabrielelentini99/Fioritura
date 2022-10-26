@@ -1,4 +1,52 @@
 "use strict";
+
+const toggleName = () => {
+	let gHeader = document.getElementById("grHeader");
+	let fHeader = document.getElementById("fiorituraHeader");
+	if (fHeader.style.display != "none") {
+		localStorage.setItem("fiorituraHeader", "Giacomo Ruffa");
+		fHeader.style.opacity = 0;
+		fHeader.style.display = "none";
+		gHeader.style.height = "auto"
+		gHeader.style.transition = "1s linear";
+		gHeader.style.opacity = 1;
+	} else {
+		localStorage.removeItem("fiorituraHeader");
+		gHeader.style.opacity = 0;
+		fHeader.style.display = "block";
+		gHeader.style.height = 0;
+		setTimeout(() => {
+			fHeader.style.opacity = 1;
+		}, 100);
+		fHeader.style.transition = ".5s linear";
+	}
+}
+
+const checkHeaderName = () => {
+	let gHeader = document.getElementById("grHeader");
+	let fHeader = document.getElementById("fiorituraHeader");
+	if (localStorage.getItem("fiorituraHeader")) {
+		fHeader.style.opacity = 0;
+		fHeader.style.display = "none";
+		gHeader.style.height = "auto"
+		gHeader.style.transition = "1s linear";
+		gHeader.style.opacity = 1;
+	} else {
+		gHeader.style.opacity = 0;
+		fHeader.style.display = "block";
+		gHeader.style.height = 0;
+		setTimeout(() => {
+			fHeader.style.opacity = 1;
+		}, 100);
+		fHeader.style.transition = ".5s linear";
+	}
+};
+
+const countVisit = () => {
+	//contatore visite 
+	// https://medium.com/@codefoxx/how-to-count-the-number-of-visits-on-your-website-with-html-css-javascript-and-the-count-api-2f99b42b5990
+}
+
 (function () {
 	// Global variables
 	var
@@ -18,47 +66,47 @@
 		livedemo = true,
 
 		plugins = {
-			bootstrapTooltip:        $( '[data-toggle="tooltip"]' ),
-			bootstrapModalDialog:    $( '.modal' ),
-			customToggle:            $( '[data-custom-toggle]' ),
-			counter:                 $( '.counter' ),
-			circleProgress:          $( '.progress-bar-circle' ),
-			captcha:                 $( '.recaptcha' ),
-			campaignMonitor:         $( '.campaign-mailform' ),
-			copyrightYear:           $( '.copyright-year' ),
-			checkbox:                $( 'input[type="checkbox"]' ),
-			dateCountdown:           $( '.DateCountdown' ),
-			isotope:                 $( '.isotope-wrap' ),
-			lightGallery:            $( '[data-lightgallery="group"]' ),
-			lightGalleryItem:        $( '[data-lightgallery="item"]' ),
-			lightDynamicGalleryItem: $( '[data-lightgallery="dynamic"]' ),
-			materialParallax:        $( '.parallax-container' ),
-			mailchimp:               $( '.mailchimp-mailform' ),
-			owl:                     $( '.owl-carousel' ),
-			popover:                 $( '[data-toggle="popover"]' ),
-			progressLinear:          $( '.progress-linear' ),
-			preloader:               $( '.preloader' ),
-			rdNavbar:                $( '.rd-navbar' ),
-			rdMailForm:              $( '.rd-mailform' ),
-			rdInputLabel:            $( '.form-label' ),
-			regula:                  $( '[data-constraints]' ),
-			radio:                   $( 'input[type="radio"]' ),
-			swiper:                  $( '.swiper-container' ),
-			search:                  $( '.rd-search' ),
-			searchResults:           $( '.rd-search-results' ),
-			statefulButton:          $( '.btn-stateful' ),
-			viewAnimate:             $( '.view-animate' ),
-			wow:                     $( '.wow' ),
-			maps:                    $( '.google-map-container' ),
-			scroller:                $( '.scroll-wrap' ),
-			jPlayerInit:             $( '.jp-player-init' ),
-			circleJPlayer:           $( '.jp-player-circle-init' ),
-			jPlayerVideo:            $( '.jp-video-init' ),
-			countDown:               $( '.countdown' ),
-			stepper:                 $( 'input[type="number"]' ),
-			slick:                   $( '.slick-slider' ),
-			vide:                    $( '.bg-vide' ),
-			customWaypoints:         $('[data-custom-scroll-to]'),
+			bootstrapTooltip: $('[data-toggle="tooltip"]'),
+			bootstrapModalDialog: $('.modal'),
+			customToggle: $('[data-custom-toggle]'),
+			counter: $('.counter'),
+			circleProgress: $('.progress-bar-circle'),
+			captcha: $('.recaptcha'),
+			campaignMonitor: $('.campaign-mailform'),
+			copyrightYear: $('.copyright-year'),
+			checkbox: $('input[type="checkbox"]'),
+			dateCountdown: $('.DateCountdown'),
+			isotope: $('.isotope-wrap'),
+			lightGallery: $('[data-lightgallery="group"]'),
+			lightGalleryItem: $('[data-lightgallery="item"]'),
+			lightDynamicGalleryItem: $('[data-lightgallery="dynamic"]'),
+			materialParallax: $('.parallax-container'),
+			mailchimp: $('.mailchimp-mailform'),
+			owl: $('.owl-carousel'),
+			popover: $('[data-toggle="popover"]'),
+			progressLinear: $('.progress-linear'),
+			preloader: $('.preloader'),
+			rdNavbar: $('.rd-navbar'),
+			rdMailForm: $('.rd-mailform'),
+			rdInputLabel: $('.form-label'),
+			regula: $('[data-constraints]'),
+			radio: $('input[type="radio"]'),
+			swiper: $('.swiper-container'),
+			search: $('.rd-search'),
+			searchResults: $('.rd-search-results'),
+			statefulButton: $('.btn-stateful'),
+			viewAnimate: $('.view-animate'),
+			wow: $('.wow'),
+			maps: $('.google-map-container'),
+			scroller: $('.scroll-wrap'),
+			jPlayerInit: $('.jp-player-init'),
+			circleJPlayer: $('.jp-player-circle-init'),
+			jPlayerVideo: $('.jp-video-init'),
+			countDown: $('.countdown'),
+			stepper: $('input[type="number"]'),
+			slick: $('.slick-slider'),
+			vide: $('.bg-vide'),
+			customWaypoints: $('[data-custom-scroll-to]'),
 
 		};
 
@@ -67,8 +115,8 @@
 	 * @param {object} elem - jQuery object
 	 * @return {boolean}
 	 */
-	function isScrolledIntoView ( elem ) {
-		if ( isNoviBuilder ) return true;
+	function isScrolledIntoView(elem) {
+		if (isNoviBuilder) return true;
 		return elem.offset().top + elem.outerHeight() >= $window.scrollTop() && elem.offset().top <= $window.scrollTop() + $window.height();
 	}
 
@@ -77,16 +125,16 @@
 	 * @param {object} element - jQuery object
 	 * @param {function} func - init function
 	 */
-	function lazyInit( element, func ) {
+	function lazyInit(element, func) {
 		var scrollHandler = function () {
-			if ( ( !element.hasClass( 'lazy-loaded' ) && ( isScrolledIntoView( element ) ) ) ) {
+			if ((!element.hasClass('lazy-loaded') && (isScrolledIntoView(element)))) {
 				func.call();
-				element.addClass( 'lazy-loaded' );
+				element.addClass('lazy-loaded');
 			}
 		};
 
 		scrollHandler();
-		$window.on( 'scroll', scrollHandler );
+		$window.on('scroll', scrollHandler);
 	}
 
 	// Initialize scripts that require a loaded window
@@ -94,7 +142,7 @@
 		// Page loader & Page transition
 		if (plugins.preloader.length && !isNoviBuilder) {
 			pageTransition({
-				target: document.querySelector( '.page' ),
+				target: document.querySelector('.page'),
 				delay: 0,
 				duration: 500,
 				classIn: 'fadeIn',
@@ -103,53 +151,54 @@
 				conditions: function (event, link) {
 					return link && !/(\#|javascript:void\(0\)|javascript:;|callto:|tel:|mailto:|:\/\/)/.test(link) && !event.currentTarget.hasAttribute('data-lightgallery');
 				},
-				onTransitionStart: function ( options ) {
-					setTimeout( function () {
+				onTransitionStart: function (options) {
+					setTimeout(function () {
 						plugins.preloader.removeClass('loaded');
-					}, options.duration * .75 );
+					}, options.duration * .75);
 				},
 				onReady: function () {
 					plugins.preloader.addClass('loaded');
 					windowReady = true;
+					checkHeaderName();
 				}
 			});
 		}
 
 		// jQuery Count To
-		if ( plugins.counter.length ) {
-			for ( var i = 0; i < plugins.counter.length; i++ ) {
+		if (plugins.counter.length) {
+			for (var i = 0; i < plugins.counter.length; i++) {
 				var
 					counter = $(plugins.counter[i]),
 					initCount = function () {
 						var counter = $(this);
-						if ( !counter.hasClass( "animated-first" ) && isScrolledIntoView( counter ) ) {
+						if (!counter.hasClass("animated-first") && isScrolledIntoView(counter)) {
 							counter.countTo({
 								refreshInterval: 40,
 								speed: counter.attr("data-speed") || 1000,
 								from: 0,
-								to: parseInt( counter.text(), 10 )
+								to: parseInt(counter.text(), 10)
 							});
 							counter.addClass('animated-first');
 						}
 					};
 
-				$.proxy( initCount, counter )();
-				$window.on( "scroll", $.proxy( initCount, counter ) );
+				$.proxy(initCount, counter)();
+				$window.on("scroll", $.proxy(initCount, counter));
 			}
 		}
 
 		// Progress bar
-		if ( plugins.progressLinear.length ) {
-			for ( var i = 0; i < plugins.progressLinear.length; i++) {
+		if (plugins.progressLinear.length) {
+			for (var i = 0; i < plugins.progressLinear.length; i++) {
 				var
 					bar = $(plugins.progressLinear[i]),
-					initProgress = function() {
+					initProgress = function () {
 						var
 							bar = $(this),
 							end = parseInt($(this).find('.progress-value').text(), 10);
 
-						if ( !bar.hasClass( "animated-first" ) && isScrolledIntoView( bar ) ) {
-							bar.find('.progress-bar-linear').css({width: end + '%'});
+						if (!bar.hasClass("animated-first") && isScrolledIntoView(bar)) {
+							bar.find('.progress-bar-linear').css({ width: end + '%' });
 							bar.find('.progress-value').countTo({
 								refreshInterval: 40,
 								from: 0,
@@ -160,14 +209,14 @@
 						}
 					};
 
-				$.proxy( initProgress, bar )();
-				$window.on( "scroll", $.proxy( initProgress, bar ) );
+				$.proxy(initProgress, bar)();
+				$window.on("scroll", $.proxy(initProgress, bar));
 			}
 		}
 
 		// Circle Progress
-		if ( plugins.circleProgress.length ) {
-			for ( var i = 0; i < plugins.circleProgress.length; i++ ) {
+		if (plugins.circleProgress.length) {
+			for (var i = 0; i < plugins.circleProgress.length; i++) {
 				var circle = $(plugins.circleProgress[i]);
 
 				circle.circleProgress({
@@ -180,70 +229,70 @@
 					startAngle: -Math.PI / 4 * 2,
 					emptyFill: circle.attr('data-empty-fill') ? circle.attr('data-empty-fill') : "rgb(245,245,245)"
 				}).on('circle-animation-progress', function (event, progress, stepValue) {
-					$(this).find('span').text( String(stepValue.toFixed(2)).replace('0.', '').replace('1.', '1') );
+					$(this).find('span').text(String(stepValue.toFixed(2)).replace('0.', '').replace('1.', '1'));
 				});
 
-				if ( isScrolledIntoView( circle ) ) circle.addClass('animated-first');
+				if (isScrolledIntoView(circle)) circle.addClass('animated-first');
 
-				$window.on( 'scroll', $.proxy( function() {
+				$window.on('scroll', $.proxy(function () {
 					var circle = $(this);
-					if ( !circle.hasClass( "animated-first" ) && isScrolledIntoView( circle ) ) {
-						circle.circleProgress( 'redraw' );
-						circle.addClass( 'animated-first' );
+					if (!circle.hasClass("animated-first") && isScrolledIntoView(circle)) {
+						circle.circleProgress('redraw');
+						circle.addClass('animated-first');
 					}
-				}, circle ) );
+				}, circle));
 			}
 		}
 
 		// Isotope
-		if ( plugins.isotope.length ) {
-			for ( var i = 0; i < plugins.isotope.length; i++ ) {
+		if (plugins.isotope.length) {
+			for (var i = 0; i < plugins.isotope.length; i++) {
 				var
-					wrap = plugins.isotope[ i ],
-					filterHandler = function ( event ) {
+					wrap = plugins.isotope[i],
+					filterHandler = function (event) {
 						event.preventDefault();
-						for ( var n = 0; n < this.isoGroup.filters.length; n++ ) this.isoGroup.filters[ n ].classList.remove( 'active' );
-						this.classList.add( 'active' );
-						this.isoGroup.isotope.arrange( { filter: this.getAttribute( "data-isotope-filter" ) !== '*' ? '[data-filter*="' + this.getAttribute( "data-isotope-filter" ) + '"]' : '*' } );
+						for (var n = 0; n < this.isoGroup.filters.length; n++) this.isoGroup.filters[n].classList.remove('active');
+						this.classList.add('active');
+						this.isoGroup.isotope.arrange({ filter: this.getAttribute("data-isotope-filter") !== '*' ? '[data-filter*="' + this.getAttribute("data-isotope-filter") + '"]' : '*' });
 					},
 					resizeHandler = function () {
 						this.isoGroup.isotope.layout();
 					};
 
 				wrap.isoGroup = {};
-				wrap.isoGroup.filters = wrap.querySelectorAll( '[data-isotope-filter]' );
-				wrap.isoGroup.node = wrap.querySelector( '.isotope' );
-				wrap.isoGroup.layout = wrap.isoGroup.node.getAttribute( 'data-isotope-layout' ) ? wrap.isoGroup.node.getAttribute( 'data-isotope-layout' ) : 'masonry';
-				wrap.isoGroup.isotope = new Isotope( wrap.isoGroup.node, {
+				wrap.isoGroup.filters = wrap.querySelectorAll('[data-isotope-filter]');
+				wrap.isoGroup.node = wrap.querySelector('.isotope');
+				wrap.isoGroup.layout = wrap.isoGroup.node.getAttribute('data-isotope-layout') ? wrap.isoGroup.node.getAttribute('data-isotope-layout') : 'masonry';
+				wrap.isoGroup.isotope = new Isotope(wrap.isoGroup.node, {
 					itemSelector: '.isotope-item',
 					layoutMode: wrap.isoGroup.layout,
 					filter: '*',
-					columnWidth: ( function() {
-						if ( wrap.isoGroup.node.hasAttribute('data-column-class') ) return wrap.isoGroup.node.getAttribute('data-column-class');
-						if ( wrap.isoGroup.node.hasAttribute('data-column-width') ) return parseFloat( wrap.isoGroup.node.getAttribute('data-column-width') );
-					}() )
-				} );
+					columnWidth: (function () {
+						if (wrap.isoGroup.node.hasAttribute('data-column-class')) return wrap.isoGroup.node.getAttribute('data-column-class');
+						if (wrap.isoGroup.node.hasAttribute('data-column-width')) return parseFloat(wrap.isoGroup.node.getAttribute('data-column-width'));
+					}())
+				});
 
-				for ( var n = 0; n < wrap.isoGroup.filters.length; n++ ) {
-					var filter = wrap.isoGroup.filters[ n ];
+				for (var n = 0; n < wrap.isoGroup.filters.length; n++) {
+					var filter = wrap.isoGroup.filters[n];
 					filter.isoGroup = wrap.isoGroup;
-					filter.addEventListener( 'click', filterHandler );
+					filter.addEventListener('click', filterHandler);
 				}
 
-				window.addEventListener( 'resize', resizeHandler.bind( wrap ) );
+				window.addEventListener('resize', resizeHandler.bind(wrap));
 			}
 		}
 
 		// Material Parallax
-		if ( plugins.materialParallax.length ) {
-			if ( !isNoviBuilder && !isIE && !isMobile) {
+		if (plugins.materialParallax.length) {
+			if (!isNoviBuilder && !isIE && !isMobile) {
 				plugins.materialParallax.parallax();
 			} else {
-				for ( var i = 0; i < plugins.materialParallax.length; i++ ) {
+				for (var i = 0; i < plugins.materialParallax.length; i++) {
 					var $parallax = $(plugins.materialParallax[i]);
 
-					$parallax.addClass( 'parallax-disabled' );
-					$parallax.css({ "background-image": 'url('+ $parallax.data("parallax-img") +')' });
+					$parallax.addClass('parallax-disabled');
+					$parallax.css({ "background-image": 'url(' + $parallax.data("parallax-img") + ')' });
 				}
 			}
 		}
@@ -263,7 +312,7 @@
 			// Format object with audio
 			for (var i = 0; i < playlistHtml.length; i++) {
 				var playlistItem = playlistHtml[i],
-						itemData = $(playlistItem).data();
+					itemData = $(playlistItem).data();
 				playlistObj[i] = {};
 
 				for (var key in itemData) {
@@ -366,78 +415,78 @@
 		 * @desc Initialize owl carousel plugin
 		 * @param {object} carousel - carousel jQuery object
 		 */
-		function initOwlCarousel ( carousel ) {
+		function initOwlCarousel(carousel) {
 			var
-				aliaces = [ '-', '-sm-', '-md-', '-lg-', '-xl-', '-xxl-' ],
-				values = [ 0, 576, 768, 992, 1200, 1600 ],
+				aliaces = ['-', '-sm-', '-md-', '-lg-', '-xl-', '-xxl-'],
+				values = [0, 576, 768, 992, 1200, 1600],
 				responsive = {};
 
-			for ( var j = 0; j < values.length; j++ ) {
-				responsive[ values[ j ] ] = {};
-				for ( var k = j; k >= -1; k-- ) {
-					if ( !responsive[ values[ j ] ][ 'items' ] && carousel.attr( 'data' + aliaces[ k ] + 'items' ) ) {
-						responsive[ values[ j ] ][ 'items' ] = k < 0 ? 1 : parseInt( carousel.attr( 'data' + aliaces[ k ] + 'items' ), 10 );
+			for (var j = 0; j < values.length; j++) {
+				responsive[values[j]] = {};
+				for (var k = j; k >= -1; k--) {
+					if (!responsive[values[j]]['items'] && carousel.attr('data' + aliaces[k] + 'items')) {
+						responsive[values[j]]['items'] = k < 0 ? 1 : parseInt(carousel.attr('data' + aliaces[k] + 'items'), 10);
 					}
-					if ( !responsive[ values[ j ] ][ 'stagePadding' ] && responsive[ values[ j ] ][ 'stagePadding' ] !== 0 && carousel.attr( 'data' + aliaces[ k ] + 'stage-padding' ) ) {
-						responsive[ values[ j ] ][ 'stagePadding' ] = k < 0 ? 0 : parseInt( carousel.attr( 'data' + aliaces[ k ] + 'stage-padding' ), 10 );
+					if (!responsive[values[j]]['stagePadding'] && responsive[values[j]]['stagePadding'] !== 0 && carousel.attr('data' + aliaces[k] + 'stage-padding')) {
+						responsive[values[j]]['stagePadding'] = k < 0 ? 0 : parseInt(carousel.attr('data' + aliaces[k] + 'stage-padding'), 10);
 					}
-					if ( !responsive[ values[ j ] ][ 'margin' ] && responsive[ values[ j ] ][ 'margin' ] !== 0 && carousel.attr( 'data' + aliaces[ k ] + 'margin' ) ) {
-						responsive[ values[ j ] ][ 'margin' ] = k < 0 ? 30 : parseInt( carousel.attr( 'data' + aliaces[ k ] + 'margin' ), 10 );
+					if (!responsive[values[j]]['margin'] && responsive[values[j]]['margin'] !== 0 && carousel.attr('data' + aliaces[k] + 'margin')) {
+						responsive[values[j]]['margin'] = k < 0 ? 30 : parseInt(carousel.attr('data' + aliaces[k] + 'margin'), 10);
 					}
 				}
 			}
 
 			// Enable custom pagination
-			if ( carousel.attr( 'data-dots-custom' ) ) {
-				carousel.on( 'initialized.owl.carousel', function ( event ) {
+			if (carousel.attr('data-dots-custom')) {
+				carousel.on('initialized.owl.carousel', function (event) {
 					var
-						carousel = $( event.currentTarget ),
-						customPag = $( carousel.attr( 'data-dots-custom' ) ),
+						carousel = $(event.currentTarget),
+						customPag = $(carousel.attr('data-dots-custom')),
 						active = 0;
 
-					if ( carousel.attr( 'data-active' ) ) {
-						active = parseInt( carousel.attr( 'data-active' ), 10 );
+					if (carousel.attr('data-active')) {
+						active = parseInt(carousel.attr('data-active'), 10);
 					}
 
-					carousel.trigger( 'to.owl.carousel', [ active, 300, true ] );
-					customPag.find( '[data-owl-item="' + active + '"]' ).addClass( 'active' );
+					carousel.trigger('to.owl.carousel', [active, 300, true]);
+					customPag.find('[data-owl-item="' + active + '"]').addClass('active');
 
-					customPag.find( '[data-owl-item]' ).on( 'click', function ( event ) {
+					customPag.find('[data-owl-item]').on('click', function (event) {
 						event.preventDefault();
-						carousel.trigger( 'to.owl.carousel', [ parseInt( this.getAttribute( 'data-owl-item' ), 10 ), 300, true ] );
-					} );
+						carousel.trigger('to.owl.carousel', [parseInt(this.getAttribute('data-owl-item'), 10), 300, true]);
+					});
 
-					carousel.on( 'translate.owl.carousel', function ( event ) {
-						customPag.find( '.active' ).removeClass( 'active' );
-						customPag.find( '[data-owl-item="' + event.item.index + '"]' ).addClass( 'active' )
-					} );
-				} );
+					carousel.on('translate.owl.carousel', function (event) {
+						customPag.find('.active').removeClass('active');
+						customPag.find('[data-owl-item="' + event.item.index + '"]').addClass('active')
+					});
+				});
 			}
 
 			// Initialize lightgallery items in cloned owl items
-			carousel.on( 'initialized.owl.carousel', function () {
-				initLightGalleryItem( carousel.find( '[data-lightgallery="item"]' ), 'lightGallery-in-carousel' );
-			} );
+			carousel.on('initialized.owl.carousel', function () {
+				initLightGalleryItem(carousel.find('[data-lightgallery="item"]'), 'lightGallery-in-carousel');
+			});
 
-			carousel.owlCarousel( {
-				autoplay:           isNoviBuilder ? false : carousel.attr( 'data-autoplay' ) !== 'false',
-				autoplayTimeout:    carousel.attr( "data-autoplay" ) ? Number( carousel.attr( "data-autoplay" ) ) : 3000,
+			carousel.owlCarousel({
+				autoplay: isNoviBuilder ? false : carousel.attr('data-autoplay') !== 'false',
+				autoplayTimeout: carousel.attr("data-autoplay") ? Number(carousel.attr("data-autoplay")) : 3000,
 				autoplayHoverPause: true,
-				loop:               isNoviBuilder ? false : carousel.attr( 'data-loop' ) !== 'false',
-				items:              1,
-				center:             carousel.attr( 'data-center' ) === 'true',
-				dotsContainer:      carousel.attr( 'data-pagination-class' ) || false,
-				navContainer:       carousel.attr( 'data-navigation-class' ) || false,
-				mouseDrag:          isNoviBuilder ? false : carousel.attr( 'data-mouse-drag' ) !== 'false',
-				nav:                carousel.attr( 'data-nav' ) === 'true',
-				dots:               carousel.attr( 'data-dots' ) === 'true',
-				dotsEach:           carousel.attr( 'data-dots-each' ) ? parseInt( carousel.attr( 'data-dots-each' ), 10 ) : false,
-				animateIn:          carousel.attr( 'data-animation-in' ) ? carousel.attr( 'data-animation-in' ) : false,
-				animateOut:         carousel.attr( 'data-animation-out' ) ? carousel.attr( 'data-animation-out' ) : false,
-				responsive:         responsive,
-				navText:            carousel.attr( 'data-nav-text' ) ? $.parseJSON( carousel.attr( 'data-nav-text' ) ) : [],
-				navClass:           carousel.attr( 'data-nav-class' ) ? $.parseJSON( carousel.attr( 'data-nav-class' ) ) : [ 'owl-prev', 'owl-next' ]
-			} );
+				loop: isNoviBuilder ? false : carousel.attr('data-loop') !== 'false',
+				items: 1,
+				center: carousel.attr('data-center') === 'true',
+				dotsContainer: carousel.attr('data-pagination-class') || false,
+				navContainer: carousel.attr('data-navigation-class') || false,
+				mouseDrag: isNoviBuilder ? false : carousel.attr('data-mouse-drag') !== 'false',
+				nav: carousel.attr('data-nav') === 'true',
+				dots: carousel.attr('data-dots') === 'true',
+				dotsEach: carousel.attr('data-dots-each') ? parseInt(carousel.attr('data-dots-each'), 10) : false,
+				animateIn: carousel.attr('data-animation-in') ? carousel.attr('data-animation-in') : false,
+				animateOut: carousel.attr('data-animation-out') ? carousel.attr('data-animation-out') : false,
+				responsive: responsive,
+				navText: carousel.attr('data-nav-text') ? $.parseJSON(carousel.attr('data-nav-text')) : [],
+				navClass: carousel.attr('data-nav-class') ? $.parseJSON(carousel.attr('data-nav-class')) : ['owl-prev', 'owl-next']
+			});
 		}
 
 		/**
@@ -478,9 +527,9 @@
 			regula.custom({
 				name: 'PhoneNumber',
 				defaultMessage: 'Invalid phone number format',
-				validator: function() {
-					if ( this.value === '' ) return true;
-					else return /^(\+\d)?[0-9\-\(\) ]{5,}$/i.test( this.value );
+				validator: function () {
+					if (this.value === '') return true;
+					else return /^(\+\d)?[0-9\-\(\) ]{5,}$/i.test(this.value);
 				}
 			});
 
@@ -497,7 +546,7 @@
 				if (e.type !== "blur") if (!$this.parent().hasClass("has-error")) return;
 				if ($this.parents('.rd-mailform').hasClass('success')) return;
 
-				if (( results = $this.regula('validate') ).length) {
+				if ((results = $this.regula('validate')).length) {
 					for (i = 0; i < results.length; i++) {
 						$this.siblings(".form-validation").text(results[i].message).parent().addClass("has-error");
 					}
@@ -639,9 +688,9 @@
 			plugins.bootstrapTooltip.tooltip('dispose');
 
 			if (window.innerWidth < 576) {
-				plugins.bootstrapTooltip.tooltip({placement: 'bottom'});
+				plugins.bootstrapTooltip.tooltip({ placement: 'bottom' });
 			} else {
-				plugins.bootstrapTooltip.tooltip({placement: tooltipPlacement});
+				plugins.bootstrapTooltip.tooltip({ placement: tooltipPlacement });
 			}
 		}
 
@@ -650,17 +699,17 @@
 		 * @param {object} itemsToInit - jQuery object
 		 * @param {string} [addClass] - additional gallery class
 		 */
-		function initLightGallery ( itemsToInit, addClass ) {
-			if ( !isNoviBuilder ) {
-				$( itemsToInit ).lightGallery( {
-					thumbnail: $( itemsToInit ).attr( "data-lg-thumbnail" ) !== "false",
+		function initLightGallery(itemsToInit, addClass) {
+			if (!isNoviBuilder) {
+				$(itemsToInit).lightGallery({
+					thumbnail: $(itemsToInit).attr("data-lg-thumbnail") !== "false",
 					selector: "[data-lightgallery='item']",
-					autoplay: $( itemsToInit ).attr( "data-lg-autoplay" ) === "true",
-					pause: parseInt( $( itemsToInit ).attr( "data-lg-autoplay-delay" ) ) || 5000,
+					autoplay: $(itemsToInit).attr("data-lg-autoplay") === "true",
+					pause: parseInt($(itemsToInit).attr("data-lg-autoplay-delay")) || 5000,
 					addClass: addClass,
-					mode: $( itemsToInit ).attr( "data-lg-animation" ) || "lg-slide",
-					loop: $( itemsToInit ).attr( "data-lg-loop" ) !== "false"
-				} );
+					mode: $(itemsToInit).attr("data-lg-animation") || "lg-slide",
+					loop: $(itemsToInit).attr("data-lg-loop") !== "false"
+				});
 			}
 		}
 
@@ -669,21 +718,21 @@
 		 * @param {object} itemsToInit - jQuery object
 		 * @param {string} [addClass] - additional gallery class
 		 */
-		function initDynamicLightGallery ( itemsToInit, addClass ) {
-			if ( !isNoviBuilder ) {
-				$( itemsToInit ).on( "click", function () {
-					$( itemsToInit ).lightGallery( {
-						thumbnail: $( itemsToInit ).attr( "data-lg-thumbnail" ) !== "false",
+		function initDynamicLightGallery(itemsToInit, addClass) {
+			if (!isNoviBuilder) {
+				$(itemsToInit).on("click", function () {
+					$(itemsToInit).lightGallery({
+						thumbnail: $(itemsToInit).attr("data-lg-thumbnail") !== "false",
 						selector: "[data-lightgallery='item']",
-						autoplay: $( itemsToInit ).attr( "data-lg-autoplay" ) === "true",
-						pause: parseInt( $( itemsToInit ).attr( "data-lg-autoplay-delay" ) ) || 5000,
+						autoplay: $(itemsToInit).attr("data-lg-autoplay") === "true",
+						pause: parseInt($(itemsToInit).attr("data-lg-autoplay-delay")) || 5000,
 						addClass: addClass,
-						mode: $( itemsToInit ).attr( "data-lg-animation" ) || "lg-slide",
-						loop: $( itemsToInit ).attr( "data-lg-loop" ) !== "false",
+						mode: $(itemsToInit).attr("data-lg-animation") || "lg-slide",
+						loop: $(itemsToInit).attr("data-lg-loop") !== "false",
 						dynamic: true,
-						dynamicEl: JSON.parse( $( itemsToInit ).attr( "data-lg-dynamic-elements" ) ) || []
-					} );
-				} );
+						dynamicEl: JSON.parse($(itemsToInit).attr("data-lg-dynamic-elements")) || []
+					});
+				});
 			}
 		}
 
@@ -692,9 +741,9 @@
 		 * @param {object} itemToInit - jQuery object
 		 * @param {string} [addClass] - additional gallery class
 		 */
-		function initLightGalleryItem ( itemToInit, addClass ) {
-			if ( !isNoviBuilder ) {
-				$( itemToInit ).lightGallery( {
+		function initLightGalleryItem(itemToInit, addClass) {
+			if (!isNoviBuilder) {
+				$(itemToInit).lightGallery({
 					selector: "this",
 					addClass: addClass,
 					counter: false,
@@ -708,7 +757,7 @@
 						byline: 0,
 						portrait: 0
 					}
-				} );
+				});
 			}
 		}
 
@@ -724,7 +773,7 @@
 					coordinates.lng
 				), marker, map)
 			} catch (e) {
-				map.geocoder.geocode({'address': str}, function (results, status) {
+				map.geocoder.geocode({ 'address': str }, function (results, status) {
 					if (status === google.maps.GeocoderStatus.OK) {
 						var latitude = results[0].geometry.location.lat();
 						var longitude = results[0].geometry.location.lng();
@@ -744,14 +793,14 @@
 		function initMaps() {
 			var key;
 
-			for ( var i = 0; i < plugins.maps.length; i++ ) {
-				if ( plugins.maps[i].hasAttribute( "data-key" ) ) {
-					key = plugins.maps[i].getAttribute( "data-key" );
+			for (var i = 0; i < plugins.maps.length; i++) {
+				if (plugins.maps[i].hasAttribute("data-key")) {
+					key = plugins.maps[i].getAttribute("data-key");
 					break;
 				}
 			}
 
-			$.getScript('//maps.google.com/maps/api/js?'+ ( key ? 'key='+ key + '&' : '' ) +'sensor=false&libraries=geometry,places&v=quarterly', function () {
+			$.getScript('//maps.google.com/maps/api/js?' + (key ? 'key=' + key + '&' : '') + 'sensor=false&libraries=geometry,places&v=quarterly', function () {
 				var head = document.getElementsByTagName('head')[0],
 					insertBefore = head.insertBefore;
 
@@ -772,7 +821,7 @@
 						zoom: zoom,
 						styles: styles,
 						scrollwheel: false,
-						center: {lat: 0, lng: 0}
+						center: { lat: 0, lng: 0 }
 					});
 
 					// Add map object to map node
@@ -789,11 +838,11 @@
 					// Add markers from google-map-markers array
 					var markerItems = plugins.maps[i].querySelectorAll(".google-map-markers li");
 
-					if (markerItems.length){
+					if (markerItems.length) {
 						var markers = [];
-						for (var j = 0; j < markerItems.length; j++){
+						for (var j = 0; j < markerItems.length; j++) {
 							var markerElement = markerItems[j];
-							getLatLngObject(markerElement.getAttribute("data-location"), markerElement, plugins.maps[i], function(location, markerElement, mapElement){
+							getLatLngObject(markerElement.getAttribute("data-location"), markerElement, plugins.maps[i], function (location, markerElement, mapElement) {
 								var icon = markerElement.getAttribute("data-icon") || mapElement.getAttribute("data-icon");
 								var activeIcon = markerElement.getAttribute("data-icon-active") || mapElement.getAttribute("data-icon-active");
 								var info = markerElement.getAttribute("data-description") || "";
@@ -805,15 +854,15 @@
 									position: location,
 									map: mapElement.map
 								}
-								if (icon){
+								if (icon) {
 									markerData.icon = icon;
 								}
 								var marker = new google.maps.Marker(markerData);
 								markerElement.gmarker = marker;
-								markers.push({markerElement: markerElement, infoWindow: infoWindow});
+								markers.push({ markerElement: markerElement, infoWindow: infoWindow });
 								marker.isActive = false;
 								// Handle infoWindow close click
-								google.maps.event.addListener(infoWindow,'closeclick',(function(markerElement, mapElement){
+								google.maps.event.addListener(infoWindow, 'closeclick', (function (markerElement, mapElement) {
 									var markerIcon = null;
 									markerElement.gmarker.isActive = false;
 									markerIcon = markerElement.getAttribute("data-icon") || mapElement.getAttribute("data-icon");
@@ -822,16 +871,16 @@
 
 
 								// Set marker active on Click and open infoWindow
-								google.maps.event.addListener(marker, 'click', (function(markerElement, mapElement) {
+								google.maps.event.addListener(marker, 'click', (function (markerElement, mapElement) {
 									if (markerElement.infoWindow.getContent().length === 0) return;
 									var gMarker, currentMarker = markerElement.gmarker, currentInfoWindow;
-									for (var k =0; k < markers.length; k++){
+									for (var k = 0; k < markers.length; k++) {
 										var markerIcon;
-										if (markers[k].markerElement === markerElement){
+										if (markers[k].markerElement === markerElement) {
 											currentInfoWindow = markers[k].infoWindow;
 										}
 										gMarker = markers[k].markerElement.gmarker;
-										if (gMarker.isActive && markers[k].markerElement !== markerElement){
+										if (gMarker.isActive && markers[k].markerElement !== markerElement) {
 											gMarker.isActive = false;
 											markerIcon = markers[k].markerElement.getAttribute("data-icon") || mapElement.getAttribute("data-icon")
 											gMarker.setIcon(markerIcon);
@@ -841,13 +890,13 @@
 
 									currentMarker.isActive = !currentMarker.isActive;
 									if (currentMarker.isActive) {
-										if (markerIcon = markerElement.getAttribute("data-icon-active") || mapElement.getAttribute("data-icon-active")){
+										if (markerIcon = markerElement.getAttribute("data-icon-active") || mapElement.getAttribute("data-icon-active")) {
 											currentMarker.setIcon(markerIcon);
 										}
 
 										currentInfoWindow.open(map, marker);
-									}else{
-										if (markerIcon = markerElement.getAttribute("data-icon") || mapElement.getAttribute("data-icon")){
+									} else {
+										if (markerIcon = markerElement.getAttribute("data-icon") || mapElement.getAttribute("data-icon")) {
 											currentMarker.setIcon(markerIcon);
 										}
 										currentInfoWindow.close();
@@ -941,8 +990,8 @@
 		}
 
 		// Google maps
-		if( plugins.maps.length ) {
-			lazyInit( plugins.maps, initMaps );
+		if (plugins.maps.length) {
+			lazyInit(plugins.maps, initMaps);
 		}
 
 		// Add custom styling options for input[type="radio"]
@@ -1170,7 +1219,7 @@
 					.end();
 
 				s.swiper({
-					autoplay: !isNoviBuilder && $.isNumeric( s.attr('data-autoplay') ) ? s.attr('data-autoplay') : false,
+					autoplay: !isNoviBuilder && $.isNumeric(s.attr('data-autoplay')) ? s.attr('data-autoplay') : false,
 					direction: s.attr('data-direction') ? s.attr('data-direction') : "horizontal",
 					effect: s.attr('data-slide-effect') ? s.attr('data-slide-effect') : "slide",
 					speed: s.attr('data-slide-speed') ? s.attr('data-slide-speed') : 600,
@@ -1205,11 +1254,11 @@
 		}
 
 		// Owl carousel
-		if ( plugins.owl.length ) {
-			for ( var i = 0; i < plugins.owl.length; i++ ) {
-				var carousel = $( plugins.owl[ i ] );
-				plugins.owl[ i ].owl = carousel;
-				initOwlCarousel( carousel );
+		if (plugins.owl.length) {
+			for (var i = 0; i < plugins.owl.length; i++) {
+				var carousel = $(plugins.owl[i]);
+				plugins.owl[i].owl = carousel;
+				initOwlCarousel(carousel);
 			}
 		}
 
@@ -1238,7 +1287,7 @@
 				$mailchimpItem.attr('novalidate', 'true');
 				$email.attr('name', 'EMAIL');
 
-				$mailchimpItem.on('submit', $.proxy( function ( $email, event ) {
+				$mailchimpItem.on('submit', $.proxy(function ($email, event) {
 					event.preventDefault();
 
 					var $this = this;
@@ -1266,8 +1315,8 @@
 						success: function (resp) {
 							$output.html(resp.msg).addClass('active');
 							$email[0].value = '';
-							var $label = $('[for="'+ $email.attr( 'id' ) +'"]');
-							if ( $label.length ) $label.removeClass( 'focus not-empty' );
+							var $label = $('[for="' + $email.attr('id') + '"]');
+							if ($label.length) $label.removeClass('focus not-empty');
 
 							setTimeout(function () {
 								$output.removeClass("active");
@@ -1314,7 +1363,7 @@
 					});
 
 					return false;
-				}, $mailchimpItem, $email ));
+				}, $mailchimpItem, $email));
 			}
 		}
 
@@ -1365,8 +1414,8 @@
 					var inputs = $this[0].getElementsByTagName('input');
 					for (var i = 0; i < inputs.length; i++) {
 						inputs[i].value = '';
-						var label = document.querySelector( '[for="'+ inputs[i].getAttribute( 'id' ) +'"]' );
-						if( label ) label.classList.remove( 'focus', 'not-empty' );
+						var label = document.querySelector('[for="' + inputs[i].getAttribute('id') + '"]');
+						if (label) label.classList.remove('focus', 'not-empty');
 					}
 
 					return false;
@@ -1423,7 +1472,7 @@
 								$.ajax({
 									method: "POST",
 									url: "bat/reCaptcha.php",
-									data: {'g-recaptcha-response': captchaToken},
+									data: { 'g-recaptcha-response': captchaToken },
 									async: false
 								})
 									.done(function (responceCode) {
@@ -1591,47 +1640,47 @@
 
 		// TimeCircles
 		if (plugins.dateCountdown.length) {
-			for ( var i = 0; i < plugins.dateCountdown.length; i++ ) {
+			for (var i = 0; i < plugins.dateCountdown.length; i++) {
 				var
-					dateCountdownItem = $( plugins.dateCountdown[ i ] ),
+					dateCountdownItem = $(plugins.dateCountdown[i]),
 					countdownRender = function () {
-						dateCountdownItem.TimeCircles( {
-							time: { Seconds: { show: !( window.innerWidth < 768 ), } }
-						} ).rebuild();
+						dateCountdownItem.TimeCircles({
+							time: { Seconds: { show: !(window.innerWidth < 768), } }
+						}).rebuild();
 					};
 
-				dateCountdownItem.TimeCircles( {
-					color: dateCountdownItem.attr( "data-color" ) ? dateCountdownItem.attr( "data-color" ) : "rgba(247, 247, 247, 1)",
+				dateCountdownItem.TimeCircles({
+					color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "rgba(247, 247, 247, 1)",
 					animation: "smooth",
-					bg_width: dateCountdownItem.attr( "data-bg-width" ) ? dateCountdownItem.attr( "data-bg-width" ) : 0.6,
-					circle_bg_color: dateCountdownItem.attr( "data-bg" ) ? dateCountdownItem.attr( "data-bg" ) : "rgba(0, 0, 0, 1)",
-					fg_width: dateCountdownItem.attr( "data-width" ) ? dateCountdownItem.attr( "data-width" ) : 0.03,
+					bg_width: dateCountdownItem.attr("data-bg-width") ? dateCountdownItem.attr("data-bg-width") : 0.6,
+					circle_bg_color: dateCountdownItem.attr("data-bg") ? dateCountdownItem.attr("data-bg") : "rgba(0, 0, 0, 1)",
+					fg_width: dateCountdownItem.attr("data-width") ? dateCountdownItem.attr("data-width") : 0.03,
 					time: {
 						Days: {
 							text: "Days",
 							show: true,
-							color: dateCountdownItem.attr( "data-color" ) ? dateCountdownItem.attr( "data-color" ) : "#f9f9f9"
+							color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
 						},
 						Hours: {
 							text: "Hours",
 							show: true,
-							color: dateCountdownItem.attr( "data-color" ) ? dateCountdownItem.attr( "data-color" ) : "#f9f9f9"
+							color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
 						},
 						Minutes: {
 							text: "Minutes",
 							show: true,
-							color: dateCountdownItem.attr( "data-color" ) ? dateCountdownItem.attr( "data-color" ) : "#f9f9f9"
+							color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
 						},
 						Seconds: {
 							text: "Seconds",
 							show: false,
-							color: dateCountdownItem.attr( "data-color" ) ? dateCountdownItem.attr( "data-color" ) : "#f9f9f9"
+							color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
 						}
 					}
-				} );
+				});
 
 				countdownRender();
-				window.addEventListener( 'resize', countdownRender );
+				window.addEventListener('resize', countdownRender);
 			}
 		}
 
@@ -1643,7 +1692,7 @@
 				scrollerItem.mCustomScrollbar({
 					theme: scrollerItem.attr('data-theme') ? scrollerItem.attr('data-theme') : 'minimal',
 					scrollInertia: 100,
-					scrollButtons: {enable: false}
+					scrollButtons: { enable: false }
 				});
 			}
 		}
@@ -1666,16 +1715,16 @@
 				$(item).addClass('jp-audio-' + index);
 
 				var mediaObj = jpFormatePlaylistObj($(item).find('.jp-player-list .jp-player-list-item')),
-						playerInstance = initJplayerBase(index, item, mediaObj);
+					playerInstance = initJplayerBase(index, item, mediaObj);
 
 				if ($(item).data('jp-player-name')) {
 					var customJpPlaylists = $('[data-jp-playlist-relative-to="' + $(item).data('jp-player-name') + '"]'),
-							playlistItems = customJpPlaylists.find("[data-jp-playlist-item]");
+						playlistItems = customJpPlaylists.find("[data-jp-playlist-item]");
 
 					// Toggle audio play on custom playlist play button click
 					playlistItems.on('click', customJpPlaylists.data('jp-playlist-play-on'), function (e) {
 						var mediaObj = jpFormatePlaylistObj(playlistItems),
-								$clickedItem = $(e.delegateTarget);
+							$clickedItem = $(e.delegateTarget);
 
 						if (!JSON.stringify(playerInstance.playlist) === JSON.stringify(mediaObj) || !playerInstance.playlist.length) {
 							playerInstance.setPlaylist(mediaObj);
@@ -1710,10 +1759,10 @@
 							if (activeIndex !== -1) {
 								if (playlistItems.eq(activeIndex + index).length !== 0) {
 									playlistItems.eq(activeIndex)
-									.removeClass('play-next play-prev playing last-played')
-									.end()
-									.eq(activeIndex + index)
-									.addClass('playing');
+										.removeClass('play-next play-prev playing last-played')
+										.end()
+										.eq(activeIndex + index)
+										.addClass('playing');
 								}
 							}
 						};
@@ -1740,15 +1789,15 @@
 
 					// Add temp marker that user want to play next audio
 					$(item).find('.jp-next')
-					.on('click', function (e) {
-						playlistItems.filter('.playing, .last-played').addClass('play-next');
-					});
+						.on('click', function (e) {
+							playlistItems.filter('.playing, .last-played').addClass('play-next');
+						});
 
 					// Add temp marker that user want to play prev audio
 					$(item).find('.jp-previous')
-					.on('click', function (e) {
-						playlistItems.filter('.playing, .last-played').addClass('play-prev');
-					});
+						.on('click', function (e) {
+							playlistItems.filter('.playing, .last-played').addClass('play-prev');
+						});
 				}
 			});
 
@@ -1770,15 +1819,15 @@
 				$(item).find('.cp-container').addClass('cp-container-' + index);
 
 				new CirclePlayer(".cp-jplayer-" + index,
-						{
-							oga: $(item).data('jp-oga'),
-							m4a: $(item).data('jp-m4a'),
-							mp3: $(item).data('jp-mp3')
-						}, {
-							cssSelectorAncestor: ".cp-container-" + index,
-							supplied: "mp3, m4a",
-							volume: 0.4
-						});
+					{
+						oga: $(item).data('jp-oga'),
+						m4a: $(item).data('jp-m4a'),
+						mp3: $(item).data('jp-mp3')
+					}, {
+					cssSelectorAncestor: ".cp-container-" + index,
+					supplied: "mp3, m4a",
+					volume: 0.4
+				});
 			});
 		}
 
@@ -1834,11 +1883,11 @@
 				$('.jp-video').each(function (index) {
 					// find every instance of jplayer using a class in their default markup
 					var $parentContainer = $(this).closest('.jp-video-init'),
-							// finds jplayers closest parent element from the ones you give it (can chain as many as you want)
-							containerWidth = $parentContainer.width(),
-							//takes the closest elements width
-							ARWidth = 1280,
-							ARHeight = 720;
+						// finds jplayers closest parent element from the ones you give it (can chain as many as you want)
+						containerWidth = $parentContainer.width(),
+						//takes the closest elements width
+						ARWidth = 1280,
+						ARHeight = 720;
 
 					// Width and height figures used to calculate the aspect ratio (will not restrict your players to this size)
 
@@ -1850,27 +1899,27 @@
 					// and then apply the width and height!
 				});
 			})
-			.trigger('resize');
+				.trigger('resize');
 		}
 
 		// jQuery Countdown
-		if ( plugins.countDown.length ) {
-			for ( var i = 0; i < plugins.countDown.length; i++) {
-				var $countDownItem = $( plugins.countDown[i] ),
-						settings = {
-							format: $countDownItem.attr('data-format'),
-							layout: $countDownItem.attr('data-layout')
-						};
+		if (plugins.countDown.length) {
+			for (var i = 0; i < plugins.countDown.length; i++) {
+				var $countDownItem = $(plugins.countDown[i]),
+					settings = {
+						format: $countDownItem.attr('data-format'),
+						layout: $countDownItem.attr('data-layout')
+					};
 
-				if ( livedemo ) {
+				if (livedemo) {
 					var d = new Date();
 					d.setDate(d.getDate() + 42);
-					settings[ $countDownItem.attr('data-type') ] = d;
+					settings[$countDownItem.attr('data-type')] = d;
 				} else {
-					settings[ $countDownItem.attr('data-type') ] = new Date( $countDownItem.attr( 'data-time' ) );
+					settings[$countDownItem.attr('data-type')] = new Date($countDownItem.attr('data-time'));
 				}
 
-				$countDownItem.countdown( settings );
+				$countDownItem.countdown(settings);
 			}
 		}
 
@@ -1940,37 +1989,37 @@
 						}
 					]
 				})
-				.on('afterChange', function (event, slick, currentSlide, nextSlide) {
-					var $this = $(this),
+					.on('afterChange', function (event, slick, currentSlide, nextSlide) {
+						var $this = $(this),
 							childCarousel = $this.attr('data-child');
 
-					if (childCarousel) {
-						$(childCarousel + ' .slick-slide').removeClass('slick-current');
-						$(childCarousel + ' .slick-slide').eq(currentSlide).addClass('slick-current');
-					}
-				});
+						if (childCarousel) {
+							$(childCarousel + ' .slick-slide').removeClass('slick-current');
+							$(childCarousel + ' .slick-slide').eq(currentSlide).addClass('slick-current');
+						}
+					});
 
 			}
 		}
 
 		// Vide
-		if ( plugins.vide.length ) {
-			for ( var i = 0; i < plugins.vide.length; i++ ) {
+		if (plugins.vide.length) {
+			for (var i = 0; i < plugins.vide.length; i++) {
 				var $element = $(plugins.vide[i]),
-						options = $element.data('vide-options'),
-						path = $element.data('vide-bg');
+					options = $element.data('vide-options'),
+					path = $element.data('vide-bg');
 
-				$element.vide( path, options );
+				$element.vide(path, options);
 
 				var
-						videObj = $element.data('vide').getVideoObject(),
-						scrollHandler = (function( $element ) {
-							if ( isScrolledIntoView( $element ) ) this.play();
-							else this.pause();
-						}).bind( videObj, $element );
+					videObj = $element.data('vide').getVideoObject(),
+					scrollHandler = (function ($element) {
+						if (isScrolledIntoView($element)) this.play();
+						else this.pause();
+					}).bind(videObj, $element);
 				scrollHandler();
-				if ( isNoviBuilder ) videObj.pause();
-				else document.addEventListener( 'scroll', scrollHandler );
+				if (isNoviBuilder) videObj.pause();
+				else document.addEventListener('scroll', scrollHandler);
 			}
 		}
 
