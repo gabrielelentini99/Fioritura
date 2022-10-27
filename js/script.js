@@ -1424,153 +1424,153 @@ const countVisit = () => {
 		}
 
 		// RD Mailform
-		if (plugins.rdMailForm.length) {
-			var i, j, k,
-				msg = {
-					'MF000': 'Successfully sent!',
-					'MF001': 'Recipients are not set!',
-					'MF002': 'Form will not work locally!',
-					'MF003': 'Please, define email field in your form!',
-					'MF004': 'Please, define type of your form!',
-					'MF254': 'Something went wrong with PHPMailer!',
-					'MF255': 'Aw, snap! Something went wrong.'
-				};
+		// if (plugins.rdMailForm.length) {
+		// 	var i, j, k,
+		// 		msg = {
+		// 			'MF000': 'Successfully sent!',
+		// 			'MF001': 'Recipients are not set!',
+		// 			'MF002': 'Form will not work locally!',
+		// 			'MF003': 'Please, define email field in your form!',
+		// 			'MF004': 'Please, define type of your form!',
+		// 			'MF254': 'Something went wrong with PHPMailer!',
+		// 			'MF255': 'Aw, snap! Something went wrong.'
+		// 		};
 
-			for (i = 0; i < plugins.rdMailForm.length; i++) {
-				var $form = $(plugins.rdMailForm[i]),
-					formHasCaptcha = false;
+		// 	for (i = 0; i < plugins.rdMailForm.length; i++) {
+		// 		var $form = $(plugins.rdMailForm[i]),
+		// 			formHasCaptcha = false;
 
-				$form.attr('novalidate', 'novalidate').ajaxForm({
-					data: {
-						"form-type": $form.attr("data-form-type") || "contact",
-						"counter": i
-					},
-					beforeSubmit: function (arr, $form, options) {
-						if (isNoviBuilder)
-							return;
+		// 		$form.attr('novalidate', 'novalidate').ajaxForm({
+		// 			data: {
+		// 				"form-type": $form.attr("data-form-type") || "contact",
+		// 				"counter": i
+		// 			},
+		// 			beforeSubmit: function (arr, $form, options) {
+		// 				if (isNoviBuilder)
+		// 					return;
 
-						var form = $(plugins.rdMailForm[this.extraData.counter]),
-							inputs = form.find("[data-constraints]"),
-							output = $("#" + form.attr("data-form-output")),
-							captcha = form.find('.recaptcha'),
-							captchaFlag = true;
+		// 				var form = $(plugins.rdMailForm[this.extraData.counter]),
+		// 					inputs = form.find("[data-constraints]"),
+		// 					output = $("#" + form.attr("data-form-output")),
+		// 					captcha = form.find('.recaptcha'),
+		// 					captchaFlag = true;
 
-						output.removeClass("active error success");
+		// 				output.removeClass("active error success");
 
-						if (isValidated(inputs, captcha)) {
+		// 				if (isValidated(inputs, captcha)) {
 
-							// veify reCaptcha
-							if (captcha.length) {
-								var captchaToken = captcha.find('.g-recaptcha-response').val(),
-									captchaMsg = {
-										'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
-										'CPT002': 'Something wrong with google reCaptcha'
-									};
+		// 					// veify reCaptcha
+		// 					if (captcha.length) {
+		// 						var captchaToken = captcha.find('.g-recaptcha-response').val(),
+		// 							captchaMsg = {
+		// 								'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
+		// 								'CPT002': 'Something wrong with google reCaptcha'
+		// 							};
 
-								formHasCaptcha = true;
+		// 						formHasCaptcha = true;
 
-								$.ajax({
-									method: "POST",
-									url: "bat/reCaptcha.php",
-									data: { 'g-recaptcha-response': captchaToken },
-									async: false
-								})
-									.done(function (responceCode) {
-										if (responceCode !== 'CPT000') {
-											if (output.hasClass("snackbars")) {
-												output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + captchaMsg[responceCode] + '</span></p>')
+		// 						$.ajax({
+		// 							method: "POST",
+		// 							url: "bat/reCaptcha.php",
+		// 							data: { 'g-recaptcha-response': captchaToken },
+		// 							async: false
+		// 						})
+		// 							.done(function (responceCode) {
+		// 								if (responceCode !== 'CPT000') {
+		// 									if (output.hasClass("snackbars")) {
+		// 										output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + captchaMsg[responceCode] + '</span></p>')
 
-												setTimeout(function () {
-													output.removeClass("active");
-												}, 3500);
+		// 										setTimeout(function () {
+		// 											output.removeClass("active");
+		// 										}, 3500);
 
-												captchaFlag = false;
-											} else {
-												output.html(captchaMsg[responceCode]);
-											}
+		// 										captchaFlag = false;
+		// 									} else {
+		// 										output.html(captchaMsg[responceCode]);
+		// 									}
 
-											output.addClass("active");
-										}
-									});
-							}
+		// 									output.addClass("active");
+		// 								}
+		// 							});
+		// 					}
 
-							if (!captchaFlag) {
-								return false;
-							}
+		// 					if (!captchaFlag) {
+		// 						return false;
+		// 					}
 
-							form.addClass('form-in-process');
+		// 					form.addClass('form-in-process');
 
-							if (output.hasClass("snackbars")) {
-								output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>');
-								output.addClass("active");
-							}
-						} else {
-							return false;
-						}
-					},
-					error: function (result) {
-						if (isNoviBuilder)
-							return;
+		// 					if (output.hasClass("snackbars")) {
+		// 						output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>');
+		// 						output.addClass("active");
+		// 					}
+		// 				} else {
+		// 					return false;
+		// 				}
+		// 			},
+		// 			error: function (result) {
+		// 				if (isNoviBuilder)
+		// 					return;
 
-						var output = $("#" + $(plugins.rdMailForm[this.extraData.counter]).attr("data-form-output")),
-							form = $(plugins.rdMailForm[this.extraData.counter]);
+		// 				var output = $("#" + $(plugins.rdMailForm[this.extraData.counter]).attr("data-form-output")),
+		// 					form = $(plugins.rdMailForm[this.extraData.counter]);
 
-						output.text(msg[result]);
-						form.removeClass('form-in-process');
+		// 				output.text(msg[result]);
+		// 				form.removeClass('form-in-process');
 
-						if (formHasCaptcha) {
-							grecaptcha.reset();
-						}
-					},
-					success: function (result) {
-						if (isNoviBuilder)
-							return;
+		// 				if (formHasCaptcha) {
+		// 					grecaptcha.reset();
+		// 				}
+		// 			},
+		// 			success: function (result) {
+		// 				if (isNoviBuilder)
+		// 					return;
 
-						var form = $(plugins.rdMailForm[this.extraData.counter]),
-							output = $("#" + form.attr("data-form-output")),
-							select = form.find('select');
+		// 				var form = $(plugins.rdMailForm[this.extraData.counter]),
+		// 					output = $("#" + form.attr("data-form-output")),
+		// 					select = form.find('select');
 
-						form
-							.addClass('success')
-							.removeClass('form-in-process');
+		// 				form
+		// 					.addClass('success')
+		// 					.removeClass('form-in-process');
 
-						if (formHasCaptcha) {
-							grecaptcha.reset();
-						}
+		// 				if (formHasCaptcha) {
+		// 					grecaptcha.reset();
+		// 				}
 
-						result = result.length === 5 ? result : 'MF255';
-						output.text(msg[result]);
+		// 				result = result.length === 5 ? result : 'MF255';
+		// 				output.text(msg[result]);
 
-						if (result === "MF000") {
-							if (output.hasClass("snackbars")) {
-								output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + msg[result] + '</span></p>');
-							} else {
-								output.addClass("active success");
-							}
-						} else {
-							if (output.hasClass("snackbars")) {
-								output.html(' <p class="snackbars-left"><span class="icon icon-xxs mdi mdi-alert-outline text-middle"></span><span>' + msg[result] + '</span></p>');
-							} else {
-								output.addClass("active error");
-							}
-						}
+		// 				if (result === "MF000") {
+		// 					if (output.hasClass("snackbars")) {
+		// 						output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + msg[result] + '</span></p>');
+		// 					} else {
+		// 						output.addClass("active success");
+		// 					}
+		// 				} else {
+		// 					if (output.hasClass("snackbars")) {
+		// 						output.html(' <p class="snackbars-left"><span class="icon icon-xxs mdi mdi-alert-outline text-middle"></span><span>' + msg[result] + '</span></p>');
+		// 					} else {
+		// 						output.addClass("active error");
+		// 					}
+		// 				}
 
-						form.clearForm();
+		// 				form.clearForm();
 
-						if (select.length) {
-							select.select2("val", "");
-						}
+		// 				if (select.length) {
+		// 					select.select2("val", "");
+		// 				}
 
-						form.find('input, textarea').trigger('blur');
+		// 				form.find('input, textarea').trigger('blur');
 
-						setTimeout(function () {
-							output.removeClass("active error success");
-							form.removeClass('success');
-						}, 3500);
-					}
-				});
-			}
-		}
+		// 				setTimeout(function () {
+		// 					output.removeClass("active error success");
+		// 					form.removeClass('success');
+		// 				}, 3500);
+		// 			}
+		// 		});
+		// 	}
+		// }
 
 		// lightGallery
 		if (plugins.lightGallery.length) {
@@ -1639,50 +1639,50 @@ const countVisit = () => {
 		}
 
 		// TimeCircles
-		if (plugins.dateCountdown.length) {
-			for (var i = 0; i < plugins.dateCountdown.length; i++) {
-				var
-					dateCountdownItem = $(plugins.dateCountdown[i]),
-					countdownRender = function () {
-						dateCountdownItem.TimeCircles({
-							time: { Seconds: { show: !(window.innerWidth < 768), } }
-						}).rebuild();
-					};
+		// if (plugins.dateCountdown.length) {
+		// 	for (var i = 0; i < plugins.dateCountdown.length; i++) {
+		// 		var
+		// 			dateCountdownItem = $(plugins.dateCountdown[i]),
+		// 			countdownRender = function () {
+		// 				dateCountdownItem.TimeCircles({
+		// 					time: { Seconds: { show: !(window.innerWidth < 768), } }
+		// 				}).rebuild();
+		// 			};
 
-				dateCountdownItem.TimeCircles({
-					color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "rgba(247, 247, 247, 1)",
-					animation: "smooth",
-					bg_width: dateCountdownItem.attr("data-bg-width") ? dateCountdownItem.attr("data-bg-width") : 0.6,
-					circle_bg_color: dateCountdownItem.attr("data-bg") ? dateCountdownItem.attr("data-bg") : "rgba(0, 0, 0, 1)",
-					fg_width: dateCountdownItem.attr("data-width") ? dateCountdownItem.attr("data-width") : 0.03,
-					time: {
-						Days: {
-							text: "Days",
-							show: true,
-							color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
-						},
-						Hours: {
-							text: "Hours",
-							show: true,
-							color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
-						},
-						Minutes: {
-							text: "Minutes",
-							show: true,
-							color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
-						},
-						Seconds: {
-							text: "Seconds",
-							show: false,
-							color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
-						}
-					}
-				});
+		// 		dateCountdownItem.TimeCircles({
+		// 			color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "rgba(247, 247, 247, 1)",
+		// 			animation: "smooth",
+		// 			bg_width: dateCountdownItem.attr("data-bg-width") ? dateCountdownItem.attr("data-bg-width") : 0.6,
+		// 			circle_bg_color: dateCountdownItem.attr("data-bg") ? dateCountdownItem.attr("data-bg") : "rgba(0, 0, 0, 1)",
+		// 			fg_width: dateCountdownItem.attr("data-width") ? dateCountdownItem.attr("data-width") : 0.03,
+		// 			time: {
+		// 				Days: {
+		// 					text: "Days",
+		// 					show: true,
+		// 					color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
+		// 				},
+		// 				Hours: {
+		// 					text: "Hours",
+		// 					show: true,
+		// 					color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
+		// 				},
+		// 				Minutes: {
+		// 					text: "Minutes",
+		// 					show: true,
+		// 					color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
+		// 				},
+		// 				Seconds: {
+		// 					text: "Seconds",
+		// 					show: false,
+		// 					color: dateCountdownItem.attr("data-color") ? dateCountdownItem.attr("data-color") : "#f9f9f9"
+		// 				}
+		// 			}
+		// 		});
 
-				countdownRender();
-				window.addEventListener('resize', countdownRender);
-			}
-		}
+		// 		countdownRender();
+		// 		window.addEventListener('resize', countdownRender);
+		// 	}
+		// }
 
 		// JQuery mousewheel plugin
 		if (plugins.scroller.length) {
@@ -1701,107 +1701,107 @@ const countVisit = () => {
 		 * Jp Audio player
 		 * @description  Custom jPlayer script
 		 */
-		if (plugins.jPlayerInit.length) {
+		// if (plugins.jPlayerInit.length) {
 
-			var artist = $('.jp-artist');
+		// 	var artist = $('.jp-artist');
 
-			// artist[0].innerText = artist[0].innerText.replace('by', 'from');
+		// 	// artist[0].innerText = artist[0].innerText.replace('by', 'from');
 
-			$html.addClass('ontouchstart' in window || 'onmsgesturechange' in window ? 'touch' : 'no-touch');
+		// 	$html.addClass('ontouchstart' in window || 'onmsgesturechange' in window ? 'touch' : 'no-touch');
 
-			$.each(plugins.jPlayerInit, function (index, item) {
-				var player = item.querySelector('.jp-jplayer');
+		// 	$.each(plugins.jPlayerInit, function (index, item) {
+		// 		var player = item.querySelector('.jp-jplayer');
 
-				$(item).addClass('jp-audio-' + index);
+		// 		$(item).addClass('jp-audio-' + index);
 
-				var mediaObj = jpFormatePlaylistObj($(item).find('.jp-player-list .jp-player-list-item')),
-					playerInstance = initJplayerBase(index, item, mediaObj);
+		// 		var mediaObj = jpFormatePlaylistObj($(item).find('.jp-player-list .jp-player-list-item')),
+		// 			playerInstance = initJplayerBase(index, item, mediaObj);
 
-				if ($(item).data('jp-player-name')) {
-					var customJpPlaylists = $('[data-jp-playlist-relative-to="' + $(item).data('jp-player-name') + '"]'),
-						playlistItems = customJpPlaylists.find("[data-jp-playlist-item]");
+		// 		if ($(item).data('jp-player-name')) {
+		// 			var customJpPlaylists = $('[data-jp-playlist-relative-to="' + $(item).data('jp-player-name') + '"]'),
+		// 				playlistItems = customJpPlaylists.find("[data-jp-playlist-item]");
 
-					// Toggle audio play on custom playlist play button click
-					playlistItems.on('click', customJpPlaylists.data('jp-playlist-play-on'), function (e) {
-						var mediaObj = jpFormatePlaylistObj(playlistItems),
-							$clickedItem = $(e.delegateTarget);
+		// 			// Toggle audio play on custom playlist play button click
+		// 			playlistItems.on('click', customJpPlaylists.data('jp-playlist-play-on'), function (e) {
+		// 				var mediaObj = jpFormatePlaylistObj(playlistItems),
+		// 					$clickedItem = $(e.delegateTarget);
 
-						if (!JSON.stringify(playerInstance.playlist) === JSON.stringify(mediaObj) || !playerInstance.playlist.length) {
-							playerInstance.setPlaylist(mediaObj);
-						}
+		// 				if (!JSON.stringify(playerInstance.playlist) === JSON.stringify(mediaObj) || !playerInstance.playlist.length) {
+		// 					playerInstance.setPlaylist(mediaObj);
+		// 				}
 
-						if (!$clickedItem.hasClass('playing')) {
-							playerInstance.pause();
+		// 				if (!$clickedItem.hasClass('playing')) {
+		// 					playerInstance.pause();
 
-							if ($clickedItem.hasClass('last-played')) {
-								playerInstance.play();
-							} else {
-								playerInstance.play(playlistItems.index($clickedItem));
-							}
+		// 					if ($clickedItem.hasClass('last-played')) {
+		// 						playerInstance.play();
+		// 					} else {
+		// 						playerInstance.play(playlistItems.index($clickedItem));
+		// 					}
 
-							playlistItems.removeClass('playing last-played');
-							$clickedItem.addClass('playing');
-						} else {
-							playlistItems.removeClass('playing last-played');
-							$clickedItem.addClass('last-played');
-							playerInstance.pause();
-						}
+		// 					playlistItems.removeClass('playing last-played');
+		// 					$clickedItem.addClass('playing');
+		// 				} else {
+		// 					playlistItems.removeClass('playing last-played');
+		// 					$clickedItem.addClass('last-played');
+		// 					playerInstance.pause();
+		// 				}
 
-					});
-
-
-					// Callback for custom playlist
-					$(playerInstance.cssSelector.jPlayer).bind($.jPlayer.event.play, function (e) {
-
-						var toggleState = function (elemClass, index) {
-							var activeIndex = playlistItems.index(playlistItems.filter(elemClass));
-
-							if (activeIndex !== -1) {
-								if (playlistItems.eq(activeIndex + index).length !== 0) {
-									playlistItems.eq(activeIndex)
-										.removeClass('play-next play-prev playing last-played')
-										.end()
-										.eq(activeIndex + index)
-										.addClass('playing');
-								}
-							}
-						};
-
-						// Check if user select next or prev track
-						toggleState('.play-next', +1);
-						toggleState('.play-prev', -1);
-
-						var lastPlayed = playlistItems.filter('.last-played');
-
-						// If user just press pause and than play on same track
-						if (lastPlayed.length) {
-							lastPlayed.addClass('playing').removeClass('last-played play-next');
-						}
-					});
+		// 			});
 
 
-					// Add temp marker of last played audio
-					$(playerInstance.cssSelector.jPlayer).bind($.jPlayer.event.pause, function (e) {
-						playlistItems.filter('.playing').addClass('last-played').removeClass('playing');
+		// 			// Callback for custom playlist
+		// 			$(playerInstance.cssSelector.jPlayer).bind($.jPlayer.event.play, function (e) {
 
-						$(playerInstance.cssSelector.cssSelectorAncestor).addClass('jp-state-visible');
-					});
+		// 				var toggleState = function (elemClass, index) {
+		// 					var activeIndex = playlistItems.index(playlistItems.filter(elemClass));
 
-					// Add temp marker that user want to play next audio
-					$(item).find('.jp-next')
-						.on('click', function (e) {
-							playlistItems.filter('.playing, .last-played').addClass('play-next');
-						});
+		// 					if (activeIndex !== -1) {
+		// 						if (playlistItems.eq(activeIndex + index).length !== 0) {
+		// 							playlistItems.eq(activeIndex)
+		// 								.removeClass('play-next play-prev playing last-played')
+		// 								.end()
+		// 								.eq(activeIndex + index)
+		// 								.addClass('playing');
+		// 						}
+		// 					}
+		// 				};
 
-					// Add temp marker that user want to play prev audio
-					$(item).find('.jp-previous')
-						.on('click', function (e) {
-							playlistItems.filter('.playing, .last-played').addClass('play-prev');
-						});
-				}
-			});
+		// 				// Check if user select next or prev track
+		// 				toggleState('.play-next', +1);
+		// 				toggleState('.play-prev', -1);
 
-		}
+		// 				var lastPlayed = playlistItems.filter('.last-played');
+
+		// 				// If user just press pause and than play on same track
+		// 				if (lastPlayed.length) {
+		// 					lastPlayed.addClass('playing').removeClass('last-played play-next');
+		// 				}
+		// 			});
+
+
+		// 			// Add temp marker of last played audio
+		// 			$(playerInstance.cssSelector.jPlayer).bind($.jPlayer.event.pause, function (e) {
+		// 				playlistItems.filter('.playing').addClass('last-played').removeClass('playing');
+
+		// 				$(playerInstance.cssSelector.cssSelectorAncestor).addClass('jp-state-visible');
+		// 			});
+
+		// 			// Add temp marker that user want to play next audio
+		// 			$(item).find('.jp-next')
+		// 				.on('click', function (e) {
+		// 					playlistItems.filter('.playing, .last-played').addClass('play-next');
+		// 				});
+
+		// 			// Add temp marker that user want to play prev audio
+		// 			$(item).find('.jp-previous')
+		// 				.on('click', function (e) {
+		// 					playlistItems.filter('.playing, .last-played').addClass('play-prev');
+		// 				});
+		// 		}
+		// 	});
+
+		// }
 
 		/**
 		 * Instance CirclePlayer
@@ -1813,115 +1813,115 @@ const countVisit = () => {
 		 *
 		 * @description  Multiple instances must set the cssSelectorAncestor in the jPlayer options.
 		 */
-		if (plugins.circleJPlayer.length) {
-			$.each(plugins.circleJPlayer, function (index, item) {
-				$(item).find('.cp-jplayer').addClass('cp-jplayer-' + index);
-				$(item).find('.cp-container').addClass('cp-container-' + index);
+		// if (plugins.circleJPlayer.length) {
+		// 	$.each(plugins.circleJPlayer, function (index, item) {
+		// 		$(item).find('.cp-jplayer').addClass('cp-jplayer-' + index);
+		// 		$(item).find('.cp-container').addClass('cp-container-' + index);
 
-				new CirclePlayer(".cp-jplayer-" + index,
-					{
-						oga: $(item).data('jp-oga'),
-						m4a: $(item).data('jp-m4a'),
-						mp3: $(item).data('jp-mp3')
-					}, {
-					cssSelectorAncestor: ".cp-container-" + index,
-					supplied: "mp3, m4a",
-					volume: 0.4
-				});
-			});
-		}
+		// 		new CirclePlayer(".cp-jplayer-" + index,
+		// 			{
+		// 				oga: $(item).data('jp-oga'),
+		// 				m4a: $(item).data('jp-m4a'),
+		// 				mp3: $(item).data('jp-mp3')
+		// 			}, {
+		// 			cssSelectorAncestor: ".cp-container-" + index,
+		// 			supplied: "mp3, m4a",
+		// 			volume: 0.4
+		// 		});
+		// 	});
+		// }
 
 		/**
 		 * Jp Video player
 		 * @description  Custom jPlayer video initialization
 		 */
-		if (plugins.jPlayerVideo.length) {
-			$.each(plugins.jPlayerVideo, function (index, item) {
-				var $item = $(item);
+		// if (plugins.jPlayerVideo.length) {
+		// 	$.each(plugins.jPlayerVideo, function (index, item) {
+		// 		var $item = $(item);
 
-				$item.find('.jp-video').addClass('jp-video-' + index);
+		// 		$item.find('.jp-video').addClass('jp-video-' + index);
 
-				new jPlayerPlaylist({
-					jPlayer: item.getElementsByClassName("jp-jplayer")[0],
-					cssSelectorAncestor: ".jp-video-" + index // Need too bee a selector not HTMLElement or Jq object, so we make it unique
-				}, jpFormatePlaylistObj($(item).find('.jp-player-list .jp-player-list-item')), {
-					playlistOptions: {
-						enableRemoveControls: false
-					},
-					size: {
-						width: "100%",
-						height: "auto",
-					},
-					supplied: "webmv, ogv, m4v",
-					useStateClassSkin: true,
-					volume: 0.4
-				});
+		// 		new jPlayerPlaylist({
+		// 			jPlayer: item.getElementsByClassName("jp-jplayer")[0],
+		// 			cssSelectorAncestor: ".jp-video-" + index // Need too bee a selector not HTMLElement or Jq object, so we make it unique
+		// 		}, jpFormatePlaylistObj($(item).find('.jp-player-list .jp-player-list-item')), {
+		// 			playlistOptions: {
+		// 				enableRemoveControls: false
+		// 			},
+		// 			size: {
+		// 				width: "100%",
+		// 				height: "auto",
+		// 			},
+		// 			supplied: "webmv, ogv, m4v",
+		// 			useStateClassSkin: true,
+		// 			volume: 0.4
+		// 		});
 
-				$(item).find(".jp-jplayer").on('click', function (e) {
-					var $this = $(this);
-					if ($('.jp-video-' + index).hasClass('jp-state-playing')) {
-						$this.jPlayer("pause");
-					} else {
-						$this.jPlayer("play");
-					}
-				});
+		// 		$(item).find(".jp-jplayer").on('click', function (e) {
+		// 			var $this = $(this);
+		// 			if ($('.jp-video-' + index).hasClass('jp-state-playing')) {
+		// 				$this.jPlayer("pause");
+		// 			} else {
+		// 				$this.jPlayer("play");
+		// 			}
+		// 		});
 
-				var initialContainerWidth = $item.width();
-				// this is the overall page container, so whatever is relevant to your page
+		// 		var initialContainerWidth = $item.width();
+		// 		// this is the overall page container, so whatever is relevant to your page
 
-				$window.resize(function () {
-					if ($item.width() !== initialContainerWidth) {
-						// checks current container size against it's rendered size on every resize.
-						initialContainerWidth = $item.width();
-						$item.trigger('resize', $item);
-						//pass off to resize listener for performance
-					}
-				});
-			});
+		// 		$window.resize(function () {
+		// 			if ($item.width() !== initialContainerWidth) {
+		// 				// checks current container size against it's rendered size on every resize.
+		// 				initialContainerWidth = $item.width();
+		// 				$item.trigger('resize', $item);
+		// 				//pass off to resize listener for performance
+		// 			}
+		// 		});
+		// 	});
 
-			$window.on('resize', function (e) {
-				$('.jp-video').each(function (index) {
-					// find every instance of jplayer using a class in their default markup
-					var $parentContainer = $(this).closest('.jp-video-init'),
-						// finds jplayers closest parent element from the ones you give it (can chain as many as you want)
-						containerWidth = $parentContainer.width(),
-						//takes the closest elements width
-						ARWidth = 1280,
-						ARHeight = 720;
+		// 	$window.on('resize', function (e) {
+		// 		$('.jp-video').each(function (index) {
+		// 			// find every instance of jplayer using a class in their default markup
+		// 			var $parentContainer = $(this).closest('.jp-video-init'),
+		// 				// finds jplayers closest parent element from the ones you give it (can chain as many as you want)
+		// 				containerWidth = $parentContainer.width(),
+		// 				//takes the closest elements width
+		// 				ARWidth = 1280,
+		// 				ARHeight = 720;
 
-					// Width and height figures used to calculate the aspect ratio (will not restrict your players to this size)
+		// 			// Width and height figures used to calculate the aspect ratio (will not restrict your players to this size)
 
-					var aspectRatio = ARHeight / ARWidth;
+		// 			var aspectRatio = ARHeight / ARWidth;
 
-					var videoHeight = Math.round(aspectRatio * containerWidth);
-					// calculates the appropriate height in rounded pixels using the aspect ratio
-					$(this).find('.jp-jplayer').width(containerWidth).height(videoHeight);
-					// and then apply the width and height!
-				});
-			})
-				.trigger('resize');
-		}
+		// 			var videoHeight = Math.round(aspectRatio * containerWidth);
+		// 			// calculates the appropriate height in rounded pixels using the aspect ratio
+		// 			$(this).find('.jp-jplayer').width(containerWidth).height(videoHeight);
+		// 			// and then apply the width and height!
+		// 		});
+		// 	})
+		// 		.trigger('resize');
+		// }
 
 		// jQuery Countdown
-		if (plugins.countDown.length) {
-			for (var i = 0; i < plugins.countDown.length; i++) {
-				var $countDownItem = $(plugins.countDown[i]),
-					settings = {
-						format: $countDownItem.attr('data-format'),
-						layout: $countDownItem.attr('data-layout')
-					};
+		// if (plugins.countDown.length) {
+		// 	for (var i = 0; i < plugins.countDown.length; i++) {
+		// 		var $countDownItem = $(plugins.countDown[i]),
+		// 			settings = {
+		// 				format: $countDownItem.attr('data-format'),
+		// 				layout: $countDownItem.attr('data-layout')
+		// 			};
 
-				if (livedemo) {
-					var d = new Date();
-					d.setDate(d.getDate() + 42);
-					settings[$countDownItem.attr('data-type')] = d;
-				} else {
-					settings[$countDownItem.attr('data-type')] = new Date($countDownItem.attr('data-time'));
-				}
+		// 		if (livedemo) {
+		// 			var d = new Date();
+		// 			d.setDate(d.getDate() + 42);
+		// 			settings[$countDownItem.attr('data-type')] = d;
+		// 		} else {
+		// 			settings[$countDownItem.attr('data-type')] = new Date($countDownItem.attr('data-time'));
+		// 		}
 
-				$countDownItem.countdown(settings);
-			}
-		}
+		// 		$countDownItem.countdown(settings);
+		// 	}
+		// }
 
 		// Stepper
 		if (plugins.stepper.length) {
