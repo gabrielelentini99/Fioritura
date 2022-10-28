@@ -51,8 +51,9 @@ const countVisit = () => {
 	// Global variables
 	var
 		userAgent = navigator.userAgent.toLowerCase(),
+		albums = null,
 		initialDate = new Date(),
-
+		token = 'BQCgZs7N8_307s8O5sYjdwZWw2kabggQNreb6793_RdTi9sGmu_utDBV0E_opkCqb-pysx4Bu7-yzbsCU5eElCqmYsZJIVxIdgy0c_srlCYB_WMRz8Z9purXhBhzX0lXlMjhGDxuEI6jBIMxrY45EIZ8i285b8R7feY40e-UeP8',
 		$document = $(document),
 		$window = $(window),
 		$html = $("html"),
@@ -160,8 +161,47 @@ const countVisit = () => {
 					plugins.preloader.addClass('loaded');
 					windowReady = true;
 					checkHeaderName();
+					if (window.location.href.includes("progetti")) {
+						getAlbums();
+					}
 				}
 			});
+		}
+
+		const getAlbums = async () => {
+			const response = await fetch("https://api.spotify.com/v1/artists/2T2rZcxiJdfsv2G8MwIhPN/albums", {
+				method: 'GET',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+					"Authorization": `Bearer ${token}`
+				}
+			});
+			response.json().then(data => {
+				albums = data.items;
+				let albumsSection = document.getElementById("tracks-gallery");
+				albums.forEach(a => {
+					assignDataToTrack(a, albumsSection);
+				});
+			});
+		}
+
+		const assignDataToTrack = (album, albumsSection) => {
+			let card = document.createElement("div");
+			let desc = document.createElement("div");
+			desc.innerHTML = album.name;
+			desc.classList.add("track-title");
+			card.appendChild(desc);
+			let link = document.createElement("a");
+			link.href = album.external_urls.spotify;
+			card.classList.add("col-md-2", "col-sm-12", "card-track");
+			let image = document.createElement("img");
+			image.src = album.images[0].url;
+			image.classList.add("hoverable-album");
+			albumsSection.appendChild(card);
+			card.appendChild(link);
+			link.appendChild(image);
+			console.log(albumsSection);
 		}
 
 		// jQuery Count To

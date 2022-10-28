@@ -15295,5 +15295,40 @@ span.active {
 }
 
 .contact-click {
-    font-size: 17px;
+	font-size: 17px;
+}
+
+div#tracks-gallery {
+	margin: 15px;
+}
+
+.card-track {
+	cursor: pointer;
+	padding: 0;
+}
+
+.card-track:hover {
+	/* transition: .2s ease-in-out; */
+}
+
+.card-track:hover .track-title {
+	opacity: 1;
+	transition: .15s linear;
+}
+
+.track-title {
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	font-weight: bold;
+}
+
+.card-track:hover .hoverable-album {
+	width: 100%;
+	opacity: 0.25;
+	transition: .15s linear;
 }
