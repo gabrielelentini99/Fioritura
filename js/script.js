@@ -24,6 +24,8 @@ const toggleName = () => {
 	}
 }
 
+document.addEventListener("backbutton", () => window.history.back(), true); 
+
 const checkHeaderName = () => {
 	let gHeader = document.getElementById("grHeader");
 	let fHeader = document.getElementById("fiorituraHeader");
