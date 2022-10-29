@@ -1,5 +1,7 @@
 "use strict";
-
+const testBack = () => {
+	window.history.back();
+}
 const toggleName = () => {
 	let gHeader = document.getElementById("grHeader");
 	let fHeader = document.getElementById("fiorituraHeader");
@@ -108,7 +110,6 @@ const countVisit = () => {
 			customWaypoints: $('[data-custom-scroll-to]'),
 
 		};
-
 	/**
 	 * @desc Check the element was been scrolled into the view
 	 * @param {object} elem - jQuery object
