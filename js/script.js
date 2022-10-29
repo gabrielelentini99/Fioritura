@@ -51,9 +51,7 @@ const countVisit = () => {
 	// Global variables
 	var
 		userAgent = navigator.userAgent.toLowerCase(),
-		albums = null,
 		initialDate = new Date(),
-		token = 'BQCgZs7N8_307s8O5sYjdwZWw2kabggQNreb6793_RdTi9sGmu_utDBV0E_opkCqb-pysx4Bu7-yzbsCU5eElCqmYsZJIVxIdgy0c_srlCYB_WMRz8Z9purXhBhzX0lXlMjhGDxuEI6jBIMxrY45EIZ8i285b8R7feY40e-UeP8',
 		$document = $(document),
 		$window = $(window),
 		$html = $("html"),
