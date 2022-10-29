@@ -1,6 +1,6 @@
 "use strict";
 const testBack = () => {
-	window.history.back();
+	window.history.go(-1);
 }
 const toggleName = () => {
 	let gHeader = document.getElementById("grHeader");
