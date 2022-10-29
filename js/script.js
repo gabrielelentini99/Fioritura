@@ -24,7 +24,7 @@ const toggleName = () => {
 	}
 }
 
-document.addEventListener("backbutton", () => window.history.back(), true); 
+document.addEventListener("backbutton", function() { window.history.go(-1); }, true); 
 
 const checkHeaderName = () => {
 	let gHeader = document.getElementById("grHeader");
