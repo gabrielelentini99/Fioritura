@@ -15336,3 +15336,9 @@ div#tracks-gallery {
 .orange-text {
 	color: var(--orange);
 }
+
+.fa.fa-copyright {
+	font-size: 18px;
+	font-style: normal;
+	margin-right: 5px;
+}
