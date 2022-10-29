@@ -169,18 +169,16 @@ const countVisit = () => {
 		}
 
 		const getAlbums = async () => {
-			const response = await fetch("https://api.spotify.com/v1/artists/2T2rZcxiJdfsv2G8MwIhPN/albums", {
+			const response = await fetch("website_data/progetti.json", {
 				method: 'GET',
 				headers: {
 					'Accept': 'application/json',
-					'Content-Type': 'application/json',
-					"Authorization": `Bearer ${token}`
+					'Content-Type': 'application/json'
 				}
 			});
 			response.json().then(data => {
-				albums = data.items;
 				let albumsSection = document.getElementById("tracks-gallery");
-				albums.forEach(a => {
+				data.forEach(a => {
 					assignDataToTrack(a, albumsSection);
 				});
 			});
@@ -189,14 +187,14 @@ const countVisit = () => {
 		const assignDataToTrack = (album, albumsSection) => {
 			let card = document.createElement("div");
 			let desc = document.createElement("div");
-			desc.innerHTML = album.name;
+			desc.innerHTML = album.title;
 			desc.classList.add("track-title");
 			card.appendChild(desc);
 			let link = document.createElement("a");
-			link.href = album.external_urls.spotify;
+			link.href = album.link;
 			card.classList.add("col-md-2", "col-sm-12", "card-track");
 			let image = document.createElement("img");
-			image.src = album.images[0].url;
+			image.src = album.cover;
 			image.classList.add("hoverable-album");
 			albumsSection.appendChild(card);
 			card.appendChild(link);

@@ -15307,10 +15307,6 @@ div#tracks-gallery {
 	padding: 0;
 }
 
-.card-track:hover {
-	/* transition: .2s ease-in-out; */
-}
-
 .card-track:hover .track-title {
 	opacity: 1;
 	transition: .15s linear;
@@ -15331,4 +15327,8 @@ div#tracks-gallery {
 	width: 100%;
 	opacity: 0.25;
 	transition: .15s linear;
+}
+
+.hoverable-album { 
+	width: 100%;
 }
