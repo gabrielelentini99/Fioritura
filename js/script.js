@@ -26,6 +26,11 @@ const toggleName = () => {
 
 document.addEventListener("backbutton", function() { window.history.go(-1); }, true); 
 
+window.addEventListener("pageshow", (event) => {
+	if (event.persisted) {
+		window.location.reload();
+	}
+})
 const checkHeaderName = () => {
 	let gHeader = document.getElementById("grHeader");
 	let fHeader = document.getElementById("fiorituraHeader");
