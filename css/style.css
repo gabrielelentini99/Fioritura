@@ -10891,7 +10891,7 @@ a.link-social:hover::after {
 }
 
 .box-about-mega-title {
-	font-size: 72px;
+	font-size: 66px;
 	line-height: 1;
 	color: rgba(255, 255, 255, 0.1);
 	font-weight: 900;
@@ -10906,7 +10906,7 @@ a.link-social:hover::after {
 
 @media (min-width: 1200px) {
 	.box-about-mega-title {
-		font-size: 133px;
+		font-size: 110px;
 		line-height: 84px;
 	}
 }
@@ -15331,4 +15331,8 @@ div#tracks-gallery {
 
 .hoverable-album { 
 	width: 100%;
+}
+
+.orange-text {
+	color: var(--orange);
 }
