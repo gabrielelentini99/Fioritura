@@ -281,43 +281,43 @@ const countVisit = () => {
 		}
 
 		// Isotope
-		if (plugins.isotope.length) {
-			for (var i = 0; i < plugins.isotope.length; i++) {
-				var
-					wrap = plugins.isotope[i],
-					filterHandler = function (event) {
-						event.preventDefault();
-						for (var n = 0; n < this.isoGroup.filters.length; n++) this.isoGroup.filters[n].classList.remove('active');
-						this.classList.add('active');
-						this.isoGroup.isotope.arrange({ filter: this.getAttribute("data-isotope-filter") !== '*' ? '[data-filter*="' + this.getAttribute("data-isotope-filter") + '"]' : '*' });
-					},
-					resizeHandler = function () {
-						this.isoGroup.isotope.layout();
-					};
+		// if (plugins.isotope.length) {
+		// 	for (var i = 0; i < plugins.isotope.length; i++) {
+		// 		var
+		// 			wrap = plugins.isotope[i],
+		// 			filterHandler = function (event) {
+		// 				event.preventDefault();
+		// 				for (var n = 0; n < this.isoGroup.filters.length; n++) this.isoGroup.filters[n].classList.remove('active');
+		// 				this.classList.add('active');
+		// 				this.isoGroup.isotope.arrange({ filter: this.getAttribute("data-isotope-filter") !== '*' ? '[data-filter*="' + this.getAttribute("data-isotope-filter") + '"]' : '*' });
+		// 			},
+		// 			resizeHandler = function () {
+		// 				this.isoGroup.isotope.layout();
+		// 			};
 
-				wrap.isoGroup = {};
-				wrap.isoGroup.filters = wrap.querySelectorAll('[data-isotope-filter]');
-				wrap.isoGroup.node = wrap.querySelector('.isotope');
-				wrap.isoGroup.layout = wrap.isoGroup.node.getAttribute('data-isotope-layout') ? wrap.isoGroup.node.getAttribute('data-isotope-layout') : 'masonry';
-				wrap.isoGroup.isotope = new Isotope(wrap.isoGroup.node, {
-					itemSelector: '.isotope-item',
-					layoutMode: wrap.isoGroup.layout,
-					filter: '*',
-					columnWidth: (function () {
-						if (wrap.isoGroup.node.hasAttribute('data-column-class')) return wrap.isoGroup.node.getAttribute('data-column-class');
-						if (wrap.isoGroup.node.hasAttribute('data-column-width')) return parseFloat(wrap.isoGroup.node.getAttribute('data-column-width'));
-					}())
-				});
+		// 		wrap.isoGroup = {};
+		// 		wrap.isoGroup.filters = wrap.querySelectorAll('[data-isotope-filter]');
+		// 		wrap.isoGroup.node = wrap.querySelector('.isotope');
+		// 		wrap.isoGroup.layout = wrap.isoGroup.node.getAttribute('data-isotope-layout') ? wrap.isoGroup.node.getAttribute('data-isotope-layout') : 'masonry';
+		// 		wrap.isoGroup.isotope = new Isotope(wrap.isoGroup.node, {
+		// 			itemSelector: '.isotope-item',
+		// 			layoutMode: wrap.isoGroup.layout,
+		// 			filter: '*',
+		// 			columnWidth: (function () {
+		// 				if (wrap.isoGroup.node.hasAttribute('data-column-class')) return wrap.isoGroup.node.getAttribute('data-column-class');
+		// 				if (wrap.isoGroup.node.hasAttribute('data-column-width')) return parseFloat(wrap.isoGroup.node.getAttribute('data-column-width'));
+		// 			}())
+		// 		});
 
-				for (var n = 0; n < wrap.isoGroup.filters.length; n++) {
-					var filter = wrap.isoGroup.filters[n];
-					filter.isoGroup = wrap.isoGroup;
-					filter.addEventListener('click', filterHandler);
-				}
+		// 		for (var n = 0; n < wrap.isoGroup.filters.length; n++) {
+		// 			var filter = wrap.isoGroup.filters[n];
+		// 			filter.isoGroup = wrap.isoGroup;
+		// 			filter.addEventListener('click', filterHandler);
+		// 		}
 
-				window.addEventListener('resize', resizeHandler.bind(wrap));
-			}
-		}
+		// 		window.addEventListener('resize', resizeHandler.bind(wrap));
+		// 	}
+		// }
 
 		// Material Parallax
 		if (plugins.materialParallax.length) {
@@ -558,68 +558,68 @@ const countVisit = () => {
 		 * @desc Attach form validation to elements
 		 * @param {object} elements - jQuery object
 		 */
-		function attachFormValidator(elements) {
-			// Custom validator - phone number
-			regula.custom({
-				name: 'PhoneNumber',
-				defaultMessage: 'Invalid phone number format',
-				validator: function () {
-					if (this.value === '') return true;
-					else return /^(\+\d)?[0-9\-\(\) ]{5,}$/i.test(this.value);
-				}
-			});
+		// function attachFormValidator(elements) {
+		// 	// Custom validator - phone number
+		// 	regula.custom({
+		// 		name: 'PhoneNumber',
+		// 		defaultMessage: 'Invalid phone number format',
+		// 		validator: function () {
+		// 			if (this.value === '') return true;
+		// 			else return /^(\+\d)?[0-9\-\(\) ]{5,}$/i.test(this.value);
+		// 		}
+		// 	});
 
-			for (var i = 0; i < elements.length; i++) {
-				var o = $(elements[i]), v;
-				o.addClass("form-control-has-validation").after("<span class='form-validation'></span>");
-				v = o.parent().find(".form-validation");
-				if (v.is(":last-child")) o.addClass("form-control-last-child");
-			}
+		// 	for (var i = 0; i < elements.length; i++) {
+		// 		var o = $(elements[i]), v;
+		// 		o.addClass("form-control-has-validation").after("<span class='form-validation'></span>");
+		// 		v = o.parent().find(".form-validation");
+		// 		if (v.is(":last-child")) o.addClass("form-control-last-child");
+		// 	}
 
-			elements.on('input change propertychange blur', function (e) {
-				var $this = $(this), results;
+		// 	elements.on('input change propertychange blur', function (e) {
+		// 		var $this = $(this), results;
 
-				if (e.type !== "blur") if (!$this.parent().hasClass("has-error")) return;
-				if ($this.parents('.rd-mailform').hasClass('success')) return;
+		// 		if (e.type !== "blur") if (!$this.parent().hasClass("has-error")) return;
+		// 		if ($this.parents('.rd-mailform').hasClass('success')) return;
 
-				if ((results = $this.regula('validate')).length) {
-					for (i = 0; i < results.length; i++) {
-						$this.siblings(".form-validation").text(results[i].message).parent().addClass("has-error");
-					}
-				} else {
-					$this.siblings(".form-validation").text("").parent().removeClass("has-error")
-				}
-			}).regula('bind');
+		// 		if ((results = $this.regula('validate')).length) {
+		// 			for (i = 0; i < results.length; i++) {
+		// 				$this.siblings(".form-validation").text(results[i].message).parent().addClass("has-error");
+		// 			}
+		// 		} else {
+		// 			$this.siblings(".form-validation").text("").parent().removeClass("has-error")
+		// 		}
+		// 	}).regula('bind');
 
-			var regularConstraintsMessages = [
-				{
-					type: regula.Constraint.Required,
-					newMessage: "The text field is required."
-				},
-				{
-					type: regula.Constraint.Email,
-					newMessage: "The email is not a valid email."
-				},
-				{
-					type: regula.Constraint.Numeric,
-					newMessage: "Only numbers are required"
-				},
-				{
-					type: regula.Constraint.Selected,
-					newMessage: "Please choose an option."
-				}
-			];
+		// 	var regularConstraintsMessages = [
+		// 		{
+		// 			type: regula.Constraint.Required,
+		// 			newMessage: "The text field is required."
+		// 		},
+		// 		{
+		// 			type: regula.Constraint.Email,
+		// 			newMessage: "The email is not a valid email."
+		// 		},
+		// 		{
+		// 			type: regula.Constraint.Numeric,
+		// 			newMessage: "Only numbers are required"
+		// 		},
+		// 		{
+		// 			type: regula.Constraint.Selected,
+		// 			newMessage: "Please choose an option."
+		// 		}
+		// 	];
 
 
-			for (var i = 0; i < regularConstraintsMessages.length; i++) {
-				var regularConstraint = regularConstraintsMessages[i];
+		// 	for (var i = 0; i < regularConstraintsMessages.length; i++) {
+		// 		var regularConstraint = regularConstraintsMessages[i];
 
-				regula.override({
-					constraintType: regularConstraint.type,
-					defaultMessage: regularConstraint.newMessage
-				});
-			}
-		}
+		// 		regula.override({
+		// 			constraintType: regularConstraint.type,
+		// 			defaultMessage: regularConstraint.newMessage
+		// 		});
+		// 	}
+		// }
 
 		/**
 		 * @desc Check if all elements pass validation
@@ -627,94 +627,94 @@ const countVisit = () => {
 		 * @param {object} captcha - captcha object for validation
 		 * @return {boolean}
 		 */
-		function isValidated(elements, captcha) {
-			var results, errors = 0;
+		// function isValidated(elements, captcha) {
+		// 	var results, errors = 0;
 
-			if (elements.length) {
-				for (var j = 0; j < elements.length; j++) {
+		// 	if (elements.length) {
+		// 		for (var j = 0; j < elements.length; j++) {
 
-					var $input = $(elements[j]);
-					if ((results = $input.regula('validate')).length) {
-						for (k = 0; k < results.length; k++) {
-							errors++;
-							$input.siblings(".form-validation").text(results[k].message).parent().addClass("has-error");
-						}
-					} else {
-						$input.siblings(".form-validation").text("").parent().removeClass("has-error")
-					}
-				}
+		// 			var $input = $(elements[j]);
+		// 			if ((results = $input.regula('validate')).length) {
+		// 				for (k = 0; k < results.length; k++) {
+		// 					errors++;
+		// 					$input.siblings(".form-validation").text(results[k].message).parent().addClass("has-error");
+		// 				}
+		// 			} else {
+		// 				$input.siblings(".form-validation").text("").parent().removeClass("has-error")
+		// 			}
+		// 		}
 
-				if (captcha) {
-					if (captcha.length) {
-						return validateReCaptcha(captcha) && errors === 0
-					}
-				}
+		// 		if (captcha) {
+		// 			if (captcha.length) {
+		// 				return validateReCaptcha(captcha) && errors === 0
+		// 			}
+		// 		}
 
-				return errors === 0;
-			}
-			return true;
-		}
+		// 		return errors === 0;
+		// 	}
+		// 	return true;
+		// }
 
 		/**
 		 * @desc Validate google reCaptcha
 		 * @param {object} captcha - captcha object for validation
 		 * @return {boolean}
 		 */
-		function validateReCaptcha(captcha) {
-			var captchaToken = captcha.find('.g-recaptcha-response').val();
+		// function validateReCaptcha(captcha) {
+		// 	var captchaToken = captcha.find('.g-recaptcha-response').val();
 
-			if (captchaToken.length === 0) {
-				captcha
-					.siblings('.form-validation')
-					.html('Please, prove that you are not robot.')
-					.addClass('active');
-				captcha
-					.closest('.form-wrap')
-					.addClass('has-error');
+		// 	if (captchaToken.length === 0) {
+		// 		captcha
+		// 			.siblings('.form-validation')
+		// 			.html('Please, prove that you are not robot.')
+		// 			.addClass('active');
+		// 		captcha
+		// 			.closest('.form-wrap')
+		// 			.addClass('has-error');
 
-				captcha.on('propertychange', function () {
-					var $this = $(this),
-						captchaToken = $this.find('.g-recaptcha-response').val();
+		// 		captcha.on('propertychange', function () {
+		// 			var $this = $(this),
+		// 				captchaToken = $this.find('.g-recaptcha-response').val();
 
-					if (captchaToken.length > 0) {
-						$this
-							.closest('.form-wrap')
-							.removeClass('has-error');
-						$this
-							.siblings('.form-validation')
-							.removeClass('active')
-							.html('');
-						$this.off('propertychange');
-					}
-				});
+		// 			if (captchaToken.length > 0) {
+		// 				$this
+		// 					.closest('.form-wrap')
+		// 					.removeClass('has-error');
+		// 				$this
+		// 					.siblings('.form-validation')
+		// 					.removeClass('active')
+		// 					.html('');
+		// 				$this.off('propertychange');
+		// 			}
+		// 		});
 
-				return false;
-			}
+		// 		return false;
+		// 	}
 
-			return true;
-		}
+		// 	return true;
+		// }
 
 		/**
 		 * @desc Initialize Google reCaptcha
 		 */
-		window.onloadCaptchaCallback = function () {
-			for (var i = 0; i < plugins.captcha.length; i++) {
-				var $capthcaItem = $(plugins.captcha[i]);
+		// window.onloadCaptchaCallback = function () {
+		// 	for (var i = 0; i < plugins.captcha.length; i++) {
+		// 		var $capthcaItem = $(plugins.captcha[i]);
 
-				grecaptcha.render(
-					$capthcaItem.attr('id'),
-					{
-						sitekey: $capthcaItem.attr('data-sitekey'),
-						size: $capthcaItem.attr('data-size') ? $capthcaItem.attr('data-size') : 'normal',
-						theme: $capthcaItem.attr('data-theme') ? $capthcaItem.attr('data-theme') : 'light',
-						callback: function (e) {
-							$('.recaptcha').trigger('propertychange');
-						}
-					}
-				);
-				$capthcaItem.after("<span class='form-validation'></span>");
-			}
-		};
+		// 		grecaptcha.render(
+		// 			$capthcaItem.attr('id'),
+		// 			{
+		// 				sitekey: $capthcaItem.attr('data-sitekey'),
+		// 				size: $capthcaItem.attr('data-size') ? $capthcaItem.attr('data-size') : 'normal',
+		// 				theme: $capthcaItem.attr('data-theme') ? $capthcaItem.attr('data-theme') : 'light',
+		// 				callback: function (e) {
+		// 					$('.recaptcha').trigger('propertychange');
+		// 				}
+		// 			}
+		// 		);
+		// 		$capthcaItem.after("<span class='form-validation'></span>");
+		// 	}
+		// };
 
 		/**
 		 * @desc Initialize Bootstrap tooltip with required placement
