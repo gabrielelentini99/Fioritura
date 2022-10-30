@@ -1,62 +1,32 @@
 [
-    {
-       "title": "DANCEFLOOR",
-       "link": "https://open.spotify.com/album/1qGSiOpShzboFiJIhnlUju",
-       "cover": "https://i.scdn.co/image/ab67616d00001e023f00d1f11a12847ffabda041"
-    },
-    {
-        "title": "Biglietto Di Solo Ritorno",
-        "link": "https://open.spotify.com/album/0DxfDiY86HxuLbE4FtCIHr",
-        "cover": "https://i.scdn.co/image/ab67616d00001e022569dccc84050abf7627b887" 
-     },
-     {
-        "title": "COME SEMPRE",
-        "link": "https://open.spotify.com/album/3gQEDfvixsbeJTslyeykw3",
-        "cover": "https://i.scdn.co/image/ab67616d00001e020bb7be1735b68a45196e54b4" 
-     },
-     {
-        "title": "DANCEFLOOR",
-        "link": "https://open.spotify.com/album/1qGSiOpShzboFiJIhnlUju",
-        "cover": "https://i.scdn.co/image/ab67616d00001e023f00d1f11a12847ffabda041"
-     },
-     {
-         "title": "Biglietto Di Solo Ritorno",
-         "link": "https://open.spotify.com/album/0DxfDiY86HxuLbE4FtCIHr",
-         "cover": "https://i.scdn.co/image/ab67616d00001e022569dccc84050abf7627b887" 
-      },
-      {
-         "title": "COME SEMPRE",
-         "link": "https://open.spotify.com/album/3gQEDfvixsbeJTslyeykw3",
-         "cover": "https://i.scdn.co/image/ab67616d00001e020bb7be1735b68a45196e54b4" 
-      },
-      {
-        "title": "DANCEFLOOR",
-        "link": "https://open.spotify.com/album/1qGSiOpShzboFiJIhnlUju",
-        "cover": "https://i.scdn.co/image/ab67616d00001e023f00d1f11a12847ffabda041"
-     },
-     {
-         "title": "Biglietto Di Solo Ritorno",
-         "link": "https://open.spotify.com/album/0DxfDiY86HxuLbE4FtCIHr",
-         "cover": "https://i.scdn.co/image/ab67616d00001e022569dccc84050abf7627b887" 
-      },
-      {
-         "title": "COME SEMPRE",
-         "link": "https://open.spotify.com/album/3gQEDfvixsbeJTslyeykw3",
-         "cover": "https://i.scdn.co/image/ab67616d00001e020bb7be1735b68a45196e54b4" 
-      },
-      {
-        "title": "DANCEFLOOR",
-        "link": "https://open.spotify.com/album/1qGSiOpShzboFiJIhnlUju",
-        "cover": "https://i.scdn.co/image/ab67616d00001e023f00d1f11a12847ffabda041"
-     },
-     {
-         "title": "Biglietto Di Solo Ritorno",
-         "link": "https://open.spotify.com/album/0DxfDiY86HxuLbE4FtCIHr",
-         "cover": "https://i.scdn.co/image/ab67616d00001e022569dccc84050abf7627b887" 
-      },
-      {
-         "title": "COME SEMPRE",
-         "link": "https://open.spotify.com/album/3gQEDfvixsbeJTslyeykw3",
-         "cover": "https://i.scdn.co/image/ab67616d00001e020bb7be1735b68a45196e54b4" 
-      }
+   {
+      "title": "DANCEFLOOR",
+      "link": "https://open.spotify.com/album/1qGSiOpShzboFiJIhnlUju",
+      "cover": "https://i.scdn.co/image/ab67616d00001e023f00d1f11a12847ffabda041"
+   },
+   {
+      "title": "Biglietto Di Solo Ritorno",
+      "link": "https://open.spotify.com/album/0DxfDiY86HxuLbE4FtCIHr",
+      "cover": "https://i.scdn.co/image/ab67616d00001e022569dccc84050abf7627b887"
+   },
+   {
+      "title": "COME SEMPRE",
+      "link": "https://open.spotify.com/album/3gQEDfvixsbeJTslyeykw3",
+      "cover": "https://i.scdn.co/image/ab67616d00001e020bb7be1735b68a45196e54b4"
+   },
+   {
+      "title": "Wall Sina",
+      "link": "https://open.spotify.com/album/3fXFRS1MCb8KxAvgqHJtBV",
+      "cover": "https://i.scdn.co/image/ab67616d00001e027a5c0b433608b170f5e0e3cb"
+   },
+   {
+      "title": "SCA",
+      "link": "https://open.spotify.com/album/1IsMXBM0mdC4GGtuYKPM2q",
+      "cover": "https://i.scdn.co/image/ab67616d00001e0207b834fc4515e3811f867623" 
+   },
+   {
+      "title": "Non è vero",
+      "link": "https://open.spotify.com/album/0W6GjTjpP0S4Gi3z5lwyQp",
+      "cover": "https://i.scdn.co/image/ab67616d00001e02a2036fc20cf5fed807d4494e" 
+   }
 ]

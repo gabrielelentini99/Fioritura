@@ -158,11 +158,11 @@ const countVisit = () => {
 				conditions: function (event, link) {
 					return link && !/(\#|javascript:void\(0\)|javascript:;|callto:|tel:|mailto:|:\/\/)/.test(link) && !event.currentTarget.hasAttribute('data-lightgallery');
 				},
-				onTransitionStart: function (options) {
-					setTimeout(function () {
-						plugins.preloader.removeClass('loaded');
-					}, options.duration * .75);
-				},
+				// onTransitionStart: function (options) {
+				// 	setTimeout(function () {
+				// 		plugins.preloader.removeClass('loaded');
+				// 	}, options.duration);
+				// },
 				onReady: function () {
 					plugins.preloader.addClass('loaded');
 					windowReady = true;
@@ -198,6 +198,7 @@ const countVisit = () => {
 			card.appendChild(desc);
 			let link = document.createElement("a");
 			link.href = album.link;
+			link.target = '_blank';
 			card.classList.add("col-md-2", "col-sm-12", "card-track");
 			let image = document.createElement("img");
 			image.src = album.cover;
@@ -205,7 +206,6 @@ const countVisit = () => {
 			albumsSection.appendChild(card);
 			card.appendChild(link);
 			link.appendChild(image);
-			console.log(albumsSection);
 		}
 
 		// jQuery Count To
