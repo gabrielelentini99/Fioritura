@@ -1289,7 +1289,7 @@ html:not(.lt-ie10) .not-animated {
 	justify-content: center;
 	align-items: center;
 	padding: 20px;
-	background: var(--black);
+	background: #fff;
 	transition: .3s all ease;
 }
 
@@ -1314,10 +1314,10 @@ html:not(.lt-ie10) .not-animated {
 }
 
 .cssload-speeding-wheel {
-	width: 36px;
-	height: 36px;
+	width: 70px;
+	height: 70px;
 	margin: 0 auto;
-	border: 3px solid var(--black);
+	border: 3px solid #000;
 	border-radius: 50%;
 	border-left-color: transparent;
 	border-bottom-color: transparent;
@@ -15347,7 +15347,7 @@ div#tracks-gallery {
 	height: 70px;
 	display: flex;
 	align-items: center;
-	
+
 }
 
 .loader .stroke {
