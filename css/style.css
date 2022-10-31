@@ -1289,7 +1289,7 @@ html:not(.lt-ie10) .not-animated {
 	justify-content: center;
 	align-items: center;
 	padding: 20px;
-	background: #fff;
+	background: #000;
 	transition: .3s all ease;
 }
 
@@ -1317,7 +1317,7 @@ html:not(.lt-ie10) .not-animated {
 	width: 70px;
 	height: 70px;
 	margin: 0 auto;
-	border: 3px solid #000;
+	border: 3px solid #fff;
 	border-radius: 50%;
 	border-left-color: transparent;
 	border-bottom-color: transparent;
@@ -15390,4 +15390,8 @@ div#tracks-gallery {
 }
 .stroke:nth-child(7) {
 	animation-delay: 0s;
+}
+
+#visits {
+	color: var(--white);
 }

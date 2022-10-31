@@ -28,6 +28,10 @@ window.addEventListener("pageshow", (event) => {
 	}
 });
 
+const websiteVisits = (response) => {
+    document.querySelector("#visits").textContent = `${response.value} Visite`;
+}
+
 const checkHeaderName = () => {
 	let gHeader = document.getElementById("grHeader");
 	let fHeader = document.getElementById("fiorituraHeader");
@@ -65,49 +69,49 @@ const countVisit = () => {
 
 		isDesktop = $html.hasClass("desktop"),
 		isIE = userAgent.indexOf("msie") !== -1 ? parseInt(userAgent.split("msie")[1], 10) : userAgent.indexOf("trident") !== -1 ? 11 : userAgent.indexOf("edge") !== -1 ? 12 : false,
-		isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+		// isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
 		windowReady = false,
 		isNoviBuilder = false,
-		livedemo = true,
+		// livedemo = true,
 
 		plugins = {
-			bootstrapTooltip: $('[data-toggle="tooltip"]'),
-			bootstrapModalDialog: $('.modal'),
-			customToggle: $('[data-custom-toggle]'),
+			// bootstrapTooltip: $('[data-toggle="tooltip"]'),
+			// bootstrapModalDialog: $('.modal'),
+			// customToggle: $('[data-custom-toggle]'),
 			counter: $('.counter'),
-			circleProgress: $('.progress-bar-circle'),
-			captcha: $('.recaptcha'),
-			campaignMonitor: $('.campaign-mailform'),
-			copyrightYear: $('.copyright-year'),
-			checkbox: $('input[type="checkbox"]'),
-			dateCountdown: $('.DateCountdown'),
-			isotope: $('.isotope-wrap'),
+			// circleProgress: $('.progress-bar-circle'),
+			// captcha: $('.recaptcha'),
+			// campaignMonitor: $('.campaign-mailform'),
+			// copyrightYear: $('.copyright-year'),
+			// checkbox: $('input[type="checkbox"]'),
+			// dateCountdown: $('.DateCountdown'),
+			// isotope: $('.isotope-wrap'),
 			lightGallery: $('[data-lightgallery="group"]'),
 			lightGalleryItem: $('[data-lightgallery="item"]'),
 			lightDynamicGalleryItem: $('[data-lightgallery="dynamic"]'),
-			materialParallax: $('.parallax-container'),
-			mailchimp: $('.mailchimp-mailform'),
+			// materialParallax: $('.parallax-container'),
+			// mailchimp: $('.mailchimp-mailform'),
 			owl: $('.owl-carousel'),
 			popover: $('[data-toggle="popover"]'),
-			progressLinear: $('.progress-linear'),
+			// progressLinear: $('.progress-linear'),
 			preloader: $('.preloader'),
 			rdNavbar: $('.rd-navbar'),
-			rdMailForm: $('.rd-mailform'),
-			rdInputLabel: $('.form-label'),
-			regula: $('[data-constraints]'),
-			radio: $('input[type="radio"]'),
+			// rdMailForm: $('.rd-mailform'),
+			// rdInputLabel: $('.form-label'),
+			// regula: $('[data-constraints]'),
+			// radio: $('input[type="radio"]'),
 			swiper: $('.swiper-container'),
 			search: $('.rd-search'),
-			searchResults: $('.rd-search-results'),
+			// searchResults: $('.rd-search-results'),
 			statefulButton: $('.btn-stateful'),
 			viewAnimate: $('.view-animate'),
-			wow: $('.wow'),
-			maps: $('.google-map-container'),
+			// wow: $('.wow'),
+			// maps: $('.google-map-container'),
 			scroller: $('.scroll-wrap'),
-			jPlayerInit: $('.jp-player-init'),
-			circleJPlayer: $('.jp-player-circle-init'),
-			jPlayerVideo: $('.jp-video-init'),
-			countDown: $('.countdown'),
+			// jPlayerInit: $('.jp-player-init'),
+			// circleJPlayer: $('.jp-player-circle-init'),
+			// jPlayerVideo: $('.jp-video-init'),
+			// countDown: $('.countdown'),
 			stepper: $('input[type="number"]'),
 			// slick: $('.slick-slider'),
 			// vide: $('.bg-vide'),
@@ -196,6 +200,7 @@ const countVisit = () => {
 			card.appendChild(desc);
 			let link = document.createElement("a");
 			link.href = album.link;
+			link.target = '_blank';
 			card.classList.add("col-md-2", "col-sm-12", "card-track");
 			let image = document.createElement("img");
 			image.src = album.cover;
@@ -230,61 +235,61 @@ const countVisit = () => {
 		}
 
 		// Progress bar
-		if (plugins.progressLinear.length) {
-			for (var i = 0; i < plugins.progressLinear.length; i++) {
-				var
-					bar = $(plugins.progressLinear[i]),
-					initProgress = function () {
-						var
-							bar = $(this),
-							end = parseInt($(this).find('.progress-value').text(), 10);
+		// if (plugins.progressLinear.length) {
+		// 	for (var i = 0; i < plugins.progressLinear.length; i++) {
+		// 		var
+		// 			bar = $(plugins.progressLinear[i]),
+		// 			initProgress = function () {
+		// 				var
+		// 					bar = $(this),
+		// 					end = parseInt($(this).find('.progress-value').text(), 10);
 
-						if (!bar.hasClass("animated-first") && isScrolledIntoView(bar)) {
-							bar.find('.progress-bar-linear').css({ width: end + '%' });
-							bar.find('.progress-value').countTo({
-								refreshInterval: 40,
-								from: 0,
-								to: end,
-								speed: 1000
-							});
-							bar.addClass('animated-first');
-						}
-					};
+		// 				if (!bar.hasClass("animated-first") && isScrolledIntoView(bar)) {
+		// 					bar.find('.progress-bar-linear').css({ width: end + '%' });
+		// 					bar.find('.progress-value').countTo({
+		// 						refreshInterval: 40,
+		// 						from: 0,
+		// 						to: end,
+		// 						speed: 1000
+		// 					});
+		// 					bar.addClass('animated-first');
+		// 				}
+		// 			};
 
-				$.proxy(initProgress, bar)();
-				$window.on("scroll", $.proxy(initProgress, bar));
-			}
-		}
+		// 		$.proxy(initProgress, bar)();
+		// 		$window.on("scroll", $.proxy(initProgress, bar));
+		// 	}
+		// }
 
 		// Circle Progress
-		if (plugins.circleProgress.length) {
-			for (var i = 0; i < plugins.circleProgress.length; i++) {
-				var circle = $(plugins.circleProgress[i]);
+		// if (plugins.circleProgress.length) {
+		// 	for (var i = 0; i < plugins.circleProgress.length; i++) {
+		// 		var circle = $(plugins.circleProgress[i]);
 
-				circle.circleProgress({
-					value: circle.attr('data-value'),
-					size: circle.attr('data-size') ? circle.attr('data-size') : 175,
-					fill: {
-						gradient: circle.attr('data-gradient').split(","),
-						gradientAngle: Math.PI / 4
-					},
-					startAngle: -Math.PI / 4 * 2,
-					emptyFill: circle.attr('data-empty-fill') ? circle.attr('data-empty-fill') : "rgb(245,245,245)"
-				}).on('circle-animation-progress', function (event, progress, stepValue) {
-					$(this).find('span').text(String(stepValue.toFixed(2)).replace('0.', '').replace('1.', '1'));
-				});
+		// 		circle.circleProgress({
+		// 			value: circle.attr('data-value'),
+		// 			size: circle.attr('data-size') ? circle.attr('data-size') : 175,
+		// 			fill: {
+		// 				gradient: circle.attr('data-gradient').split(","),
+		// 				gradientAngle: Math.PI / 4
+		// 			},
+		// 			startAngle: -Math.PI / 4 * 2,
+		// 			emptyFill: circle.attr('data-empty-fill') ? circle.attr('data-empty-fill') : "rgb(245,245,245)"
+		// 		}).on('circle-animation-progress', function (event, progress, stepValue) {
+		// 			$(this).find('span').text(String(stepValue.toFixed(2)).replace('0.', '').replace('1.', '1'));
+		// 		});
 
-				if (isScrolledIntoView(circle)) circle.addClass('animated-first');
+		// 		if (isScrolledIntoView(circle)) circle.addClass('animated-first');
 
-				$window.on('scroll', $.proxy(function () {
-					var circle = $(this);
-					if (!circle.hasClass("animated-first") && isScrolledIntoView(circle)) {
-						circle.circleProgress('redraw');
-						circle.addClass('animated-first');
-					}
-				}, circle));
-			}
-		}
+		// 		$window.on('scroll', $.proxy(function () {
+		// 			var circle = $(this);
+		// 			if (!circle.hasClass("animated-first") && isScrolledIntoView(circle)) {
+		// 				circle.circleProgress('redraw');
+		// 				circle.addClass('animated-first');
+		// 			}
+		// 		}, circle));
+		// 	}
+		// }
 
 		// Isotope
 		// if (plugins.isotope.length) {
@@ -326,18 +331,18 @@ const countVisit = () => {
 		// }
 
 		// Material Parallax
-		if (plugins.materialParallax.length) {
-			if (!isNoviBuilder && !isIE && !isMobile) {
-				plugins.materialParallax.parallax();
-			} else {
-				for (var i = 0; i < plugins.materialParallax.length; i++) {
-					var $parallax = $(plugins.materialParallax[i]);
+		// if (plugins.materialParallax.length) {
+		// 	if (!isNoviBuilder && !isIE && !isMobile) {
+		// 		plugins.materialParallax.parallax();
+		// 	} else {
+		// 		for (var i = 0; i < plugins.materialParallax.length; i++) {
+		// 			var $parallax = $(plugins.materialParallax[i]);
 
-					$parallax.addClass('parallax-disabled');
-					$parallax.css({ "background-image": 'url(' + $parallax.data("parallax-img") + ')' });
-				}
-			}
-		}
+		// 			$parallax.addClass('parallax-disabled');
+		// 			$parallax.css({ "background-image": 'url(' + $parallax.data("parallax-img") + ')' });
+		// 		}
+		// 	}
+		// }
 	});
 
 	// Initialize scripts that require a finished document
@@ -726,15 +731,15 @@ const countVisit = () => {
 		 * @desc Initialize Bootstrap tooltip with required placement
 		 * @param {string} tooltipPlacement
 		 */
-		function initBootstrapTooltip(tooltipPlacement) {
-			plugins.bootstrapTooltip.tooltip('dispose');
+		// function initBootstrapTooltip(tooltipPlacement) {
+		// 	plugins.bootstrapTooltip.tooltip('dispose');
 
-			if (window.innerWidth < 576) {
-				plugins.bootstrapTooltip.tooltip({ placement: 'bottom' });
-			} else {
-				plugins.bootstrapTooltip.tooltip({ placement: tooltipPlacement });
-			}
-		}
+		// 	if (window.innerWidth < 576) {
+		// 		plugins.bootstrapTooltip.tooltip({ placement: 'bottom' });
+		// 	} else {
+		// 		plugins.bootstrapTooltip.tooltip({ placement: tooltipPlacement });
+		// 	}
+		// }
 
 		/**
 		 * @desc Initialize the gallery with set of images
@@ -952,9 +957,9 @@ const countVisit = () => {
 		}
 
 		// Google ReCaptcha
-		if (plugins.captcha.length) {
-			$.getScript("//www.google.com/recaptcha/api.js?onload=onloadCaptchaCallback&render=explicit&hl=en");
-		}
+		// if (plugins.captcha.length) {
+		// 	$.getScript("//www.google.com/recaptcha/api.js?onload=onloadCaptchaCallback&render=explicit&hl=en");
+		// }
 
 		// Additional class on html if mac os.
 		if (navigator.platform.match(/(Mac)/i)) {
@@ -970,39 +975,39 @@ const countVisit = () => {
 		}
 
 		// Bootstrap Tooltips
-		if (plugins.bootstrapTooltip.length) {
-			var tooltipPlacement = plugins.bootstrapTooltip.attr('data-placement');
-			initBootstrapTooltip(tooltipPlacement);
+		// if (plugins.bootstrapTooltip.length) {
+		// 	var tooltipPlacement = plugins.bootstrapTooltip.attr('data-placement');
+		// 	initBootstrapTooltip(tooltipPlacement);
 
-			$window.on('resize orientationchange', function () {
-				initBootstrapTooltip(tooltipPlacement);
-			})
-		}
+		// 	$window.on('resize orientationchange', function () {
+		// 		initBootstrapTooltip(tooltipPlacement);
+		// 	})
+		// }
 
 		// Stop vioeo in bootstrapModalDialog
-		if (plugins.bootstrapModalDialog.length) {
-			for (var i = 0; i < plugins.bootstrapModalDialog.length; i++) {
-				var modalItem = $(plugins.bootstrapModalDialog[i]);
+		// if (plugins.bootstrapModalDialog.length) {
+		// 	for (var i = 0; i < plugins.bootstrapModalDialog.length; i++) {
+		// 		var modalItem = $(plugins.bootstrapModalDialog[i]);
 
-				modalItem.on('hidden.bs.modal', $.proxy(function () {
-					var activeModal = $(this),
-						rdVideoInside = activeModal.find('video'),
-						youTubeVideoInside = activeModal.find('iframe');
+		// 		modalItem.on('hidden.bs.modal', $.proxy(function () {
+		// 			var activeModal = $(this),
+		// 				rdVideoInside = activeModal.find('video'),
+		// 				youTubeVideoInside = activeModal.find('iframe');
 
-					if (rdVideoInside.length) {
-						rdVideoInside[0].pause();
-					}
+		// 			if (rdVideoInside.length) {
+		// 				rdVideoInside[0].pause();
+		// 			}
 
-					if (youTubeVideoInside.length) {
-						var videoUrl = youTubeVideoInside.attr('src');
+		// 			if (youTubeVideoInside.length) {
+		// 				var videoUrl = youTubeVideoInside.attr('src');
 
-						youTubeVideoInside
-							.attr('src', '')
-							.attr('src', videoUrl);
-					}
-				}, modalItem))
-			}
-		}
+		// 				youTubeVideoInside
+		// 					.attr('src', '')
+		// 					.attr('src', videoUrl);
+		// 			}
+		// 		}, modalItem))
+		// 	}
+		// }
 
 		// Popovers
 		if (plugins.popover.length) {
@@ -1027,28 +1032,28 @@ const countVisit = () => {
 		}
 
 		// Copyright Year (Evaluates correct copyright year)
-		if (plugins.copyrightYear.length) {
-			plugins.copyrightYear.text(initialDate.getFullYear());
-		}
+		// if (plugins.copyrightYear.length) {
+		// 	plugins.copyrightYear.text(initialDate.getFullYear());
+		// }
 
 		// Google maps
-		if (plugins.maps.length) {
-			lazyInit(plugins.maps, initMaps);
-		}
+		// if (plugins.maps.length) {
+		// 	lazyInit(plugins.maps, initMaps);
+		// }
 
 		// Add custom styling options for input[type="radio"]
-		if (plugins.radio.length) {
-			for (var i = 0; i < plugins.radio.length; i++) {
-				$(plugins.radio[i]).addClass("radio-custom").after("<span class='radio-custom-dummy'></span>")
-			}
-		}
+		// if (plugins.radio.length) {
+		// 	for (var i = 0; i < plugins.radio.length; i++) {
+		// 		$(plugins.radio[i]).addClass("radio-custom").after("<span class='radio-custom-dummy'></span>")
+		// 	}
+		// }
 
 		// Add custom styling options for input[type="checkbox"]
-		if (plugins.checkbox.length) {
-			for (var i = 0; i < plugins.checkbox.length; i++) {
-				$(plugins.checkbox[i]).addClass("checkbox-custom").after("<span class='checkbox-custom-dummy'></span>")
-			}
-		}
+		// if (plugins.checkbox.length) {
+		// 	for (var i = 0; i < plugins.checkbox.length; i++) {
+		// 		$(plugins.checkbox[i]).addClass("checkbox-custom").after("<span class='checkbox-custom-dummy'></span>")
+		// 	}
+		// }
 
 		// UI To Top
 		if (isDesktop && !isNoviBuilder) {
@@ -1305,19 +1310,19 @@ const countVisit = () => {
 		}
 
 		// WOW
-		if ($html.hasClass("wow-animation") && plugins.wow.length && !isNoviBuilder && isDesktop) {
-			new WOW().init();
-		}
+		// if ($html.hasClass("wow-animation") && plugins.wow.length && !isNoviBuilder && isDesktop) {
+		// 	new WOW().init();
+		// }
 
 		// RD Input Label
-		if (plugins.rdInputLabel.length) {
-			plugins.rdInputLabel.RDInputLabel();
-		}
+		// if (plugins.rdInputLabel.length) {
+		// 	plugins.rdInputLabel.RDInputLabel();
+		// }
 
 		// Regula
-		if (plugins.regula.length) {
-			attachFormValidator(plugins.regula);
-		}
+		// if (plugins.regula.length) {
+		// 	attachFormValidator(plugins.regula);
+		// }
 
 		// MailChimp Ajax subscription
 		// if (plugins.mailchimp.length) {
@@ -1649,36 +1654,36 @@ const countVisit = () => {
 		}
 
 		// Custom Toggles
-		if (plugins.customToggle.length) {
-			for (var i = 0; i < plugins.customToggle.length; i++) {
-				var $this = $(plugins.customToggle[i]);
+		// if (plugins.customToggle.length) {
+		// 	for (var i = 0; i < plugins.customToggle.length; i++) {
+		// 		var $this = $(plugins.customToggle[i]);
 
-				$this.on('click', $.proxy(function (event) {
-					event.preventDefault();
+		// 		$this.on('click', $.proxy(function (event) {
+		// 			event.preventDefault();
 
-					var $ctx = $(this);
-					$($ctx.attr('data-custom-toggle')).add(this).toggleClass('active');
-				}, $this));
+		// 			var $ctx = $(this);
+		// 			$($ctx.attr('data-custom-toggle')).add(this).toggleClass('active');
+		// 		}, $this));
 
-				if ($this.attr("data-custom-toggle-hide-on-blur") === "true") {
-					$body.on("click", $this, function (e) {
-						if (e.target !== e.data[0]
-							&& $(e.data.attr('data-custom-toggle')).find($(e.target)).length
-							&& e.data.find($(e.target)).length === 0) {
-							$(e.data.attr('data-custom-toggle')).add(e.data[0]).removeClass('active');
-						}
-					})
-				}
+		// 		if ($this.attr("data-custom-toggle-hide-on-blur") === "true") {
+		// 			$body.on("click", $this, function (e) {
+		// 				if (e.target !== e.data[0]
+		// 					&& $(e.data.attr('data-custom-toggle')).find($(e.target)).length
+		// 					&& e.data.find($(e.target)).length === 0) {
+		// 					$(e.data.attr('data-custom-toggle')).add(e.data[0]).removeClass('active');
+		// 				}
+		// 			})
+		// 		}
 
-				if ($this.attr("data-custom-toggle-disable-on-blur") === "true") {
-					$body.on("click", $this, function (e) {
-						if (e.target !== e.data[0] && $(e.data.attr('data-custom-toggle')).find($(e.target)).length === 0 && e.data.find($(e.target)).length === 0) {
-							$(e.data.attr('data-custom-toggle')).add(e.data[0]).removeClass('active');
-						}
-					})
-				}
-			}
-		}
+		// 		if ($this.attr("data-custom-toggle-disable-on-blur") === "true") {
+		// 			$body.on("click", $this, function (e) {
+		// 				if (e.target !== e.data[0] && $(e.data.attr('data-custom-toggle')).find($(e.target)).length === 0 && e.data.find($(e.target)).length === 0) {
+		// 					$(e.data.attr('data-custom-toggle')).add(e.data[0]).removeClass('active');
+		// 				}
+		// 			})
+		// 		}
+		// 	}
+		// }
 
 		// TimeCircles
 		// if (plugins.dateCountdown.length) {
