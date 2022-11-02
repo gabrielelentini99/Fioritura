@@ -22,6 +22,39 @@ const toggleName = () => {
 	}
 }
 
+const checkSelectedLanguage = () => {
+	let selectedLanguage = localStorage.getItem("FiorituraLanguage");
+	let url = window.location.href;
+
+	if (!selectedLanguage) localStorage.setItem("FiorituraLanguage", "Italian");
+	if (url.includes("index")) {
+
+	}
+	if (url.includes("chi-sono")) {
+		let el = document.querySelectorAll(".box-about");
+		selectedLanguage === "English" ? el[0].style.display = "none" : el[1].style.display = "none"; 
+	}
+	if (url.includes("progetti")) {
+		
+	}
+	if (url.includes("chi-")) {
+		
+	}
+}
+
+const handleLanguageSwitch = (lang) => {
+	if (lang === 'it') {
+		localStorage.setItem("FiorituraLanguage", "Italian");
+		location.reload();
+		return;
+	}
+	if (lang === 'en') {
+		localStorage.setItem("FiorituraLanguage", "English");
+		location.reload();
+		return;
+	}
+}
+
 window.addEventListener("pageshow", (event) => {
 	if (event.persisted) {
 		window.location.reload();
@@ -153,7 +186,7 @@ const countVisit = () => {
 			pageTransition({
 				target: document.querySelector('.page'),
 				delay: 0,
-				duration: 500,
+				duration: 100,
 				classIn: 'fadeIn',
 				classOut: 'fadeOut',
 				classActive: 'animated',
@@ -166,12 +199,13 @@ const countVisit = () => {
 				// 	}, options.duration * .75);
 				// },
 				onReady: function () {
-					plugins.preloader.addClass('loaded');
-					windowReady = true;
+					checkSelectedLanguage();
 					checkHeaderName();
 					if (window.location.href.includes("progetti")) {
 						getAlbums();
 					}
+					plugins.preloader.addClass('loaded');
+					windowReady = true;
 				}
 			});
 		}

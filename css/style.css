@@ -8184,13 +8184,13 @@ yx-axis
 }
 
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-	background-color: #4c5a86;
+	background-color: var(--lighter-grey);
 }
 
 .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
 .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
 .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar {
-	background-color: #48567f;
+	background-color: var(--darker-grey);
 }
 
 .mCSB_scrollTools .mCSB_buttonUp,
@@ -15299,12 +15299,13 @@ span.active {
 }
 
 div#tracks-gallery {
-	margin: 15px;
+	margin: 10px;
 }
 
 .card-track {
 	cursor: pointer;
 	padding: 0;
+	border: 8px solid var(--black);
 }
 
 .card-track:hover .track-title {
@@ -15338,9 +15339,11 @@ div#tracks-gallery {
 }
 
 .fa.fa-copyright {
-	font-size: 18px;
-	font-style: normal;
-	margin-right: 5px;
+	position: relative;
+    font-size: 18px;
+    font-style: normal;
+    margin-right: 5px;
+    top: 2px;
 }
 
 .loader {
@@ -15394,4 +15397,14 @@ div#tracks-gallery {
 
 #visits {
 	color: var(--white);
+}
+
+img.lang-flag {
+    width: 40px;
+    margin: 10px;
+	cursor: pointer;
+}
+
+p.languages {
+    margin-top: 1px;
 }
