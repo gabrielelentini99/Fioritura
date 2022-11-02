@@ -32,14 +32,20 @@ const checkSelectedLanguage = () => {
 	}
 	if (url.includes("chi-sono")) {
 		let el = document.querySelectorAll(".box-about");
-		selectedLanguage === "English" ? el[0].style.display = "none" : el[1].style.display = "none"; 
+		selectedLanguage === "English" ? el[0].style.display = "none" : el[1].style.display = "none";
+		
 	}
 	if (url.includes("progetti")) {
 		
 	}
-	if (url.includes("chi-")) {
+	if (url.includes("contatti")) {
 		
 	}
+	scrollToTop();
+}
+
+const scrollToTop = () => {
+	document.body.scrollTop = document.documentElement.scrollTop = 0;
 }
 
 const handleLanguageSwitch = (lang) => {
