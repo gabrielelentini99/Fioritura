@@ -24,23 +24,11 @@ const toggleName = () => {
 
 const checkSelectedLanguage = () => {
 	let selectedLanguage = localStorage.getItem("FiorituraLanguage");
-	let url = window.location.href;
-
+	// let url = window.location.href;
+	let italianElements = document.querySelectorAll(".italian");
+		let englishElements = document.querySelectorAll(".english");
 	if (!selectedLanguage) localStorage.setItem("FiorituraLanguage", "Italian");
-	if (url.includes("index")) {
-
-	}
-	if (url.includes("chi-sono")) {
-		let el = document.querySelectorAll(".box-about");
-		selectedLanguage === "English" ? el[0].style.display = "none" : el[1].style.display = "none";
-		
-	}
-	if (url.includes("progetti")) {
-		
-	}
-	if (url.includes("contatti")) {
-		
-	}
+	selectedLanguage === "English" ? italianElements.forEach(el => el.style.display = "none") : englishElements.forEach(el => el.style.display = "none");
 	scrollToTop();
 }
 
@@ -68,7 +56,8 @@ window.addEventListener("pageshow", (event) => {
 });
 
 const websiteVisits = (response) => {
-    document.querySelector("#visits").textContent = `${response.value} Visite`;
+	let selectedLanguage = localStorage.getItem("FiorituraLanguage");
+    document.querySelector("#visits").textContent = `${response.value} ${selectedLanguage === 'English' ? "Visits" : "Visite"}`;
 }
 
 const checkHeaderName = () => {
