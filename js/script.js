@@ -22,31 +22,51 @@ const toggleName = () => {
 	}
 }
 
-const checkSelectedLanguage = () => {
-	let selectedLanguage = localStorage.getItem("FiorituraLanguage");
-	// let url = window.location.href;
-	let italianElements = document.querySelectorAll(".italian");
-		let englishElements = document.querySelectorAll(".english");
-	if (!selectedLanguage) localStorage.setItem("FiorituraLanguage", "Italian");
-	selectedLanguage === "English" ? italianElements.forEach(el => el.style.display = "none") : englishElements.forEach(el => el.style.display = "none");
-	scrollToTop();
-}
+// const checkSelectedLanguage = () => {
+// 	let selectedLanguage = localStorage.getItem("FiorituraLanguage");
+	
+// 	if (!selectedLanguage) {
+// 		localStorage.setItem("FiorituraLanguage", "Italian");
+// 		return;
+// 	}
+
+// 	let url = location.href;
+	
+// 	if (url.includes("chi-sono")) {
+// 		location.href = "about.html";
+// 		return;
+// 	}
+// 	if (url.includes("progetti")) {
+// 		location.href = "projects.html";
+// 		return;
+// 	}
+// 	if (url.includes("contatti")) {
+// 		location.href = "contacts.html";
+// 		return;
+// 	}
+// 	// // let url = window.location.href;
+// 	// let italianElements = document.querySelectorAll(".italian");
+// 	// 	let englishElements = document.querySelectorAll(".english");
+// 	// if (!selectedLanguage) localStorage.setItem("FiorituraLanguage", "Italian");
+// 	// selectedLanguage === "English" ? italianElements.forEach(el => el.style.display = "none") : englishElements.forEach(el => el.style.display = "none");
+// 	// scrollToTop();
+// }
 
 const scrollToTop = () => {
 	document.body.scrollTop = document.documentElement.scrollTop = 0;
 }
 
 const handleLanguageSwitch = (lang) => {
-	if (lang === 'it') {
-		localStorage.setItem("FiorituraLanguage", "Italian");
-		location.reload();
-		return;
-	}
-	if (lang === 'en') {
-		localStorage.setItem("FiorituraLanguage", "English");
-		location.reload();
-		return;
-	}
+	// if (lang === 'it') {
+	// 	localStorage.setItem("FiorituraLanguage", "Italian");
+	// 	location.reload();
+	// 	return;
+	// }
+	// if (lang === 'en') {
+	// 	localStorage.setItem("FiorituraLanguage", "English");
+	// 	location.reload();
+	// 	return;
+	// }
 }
 
 window.addEventListener("pageshow", (event) => {
@@ -56,8 +76,8 @@ window.addEventListener("pageshow", (event) => {
 });
 
 const websiteVisits = (response) => {
-	let selectedLanguage = localStorage.getItem("FiorituraLanguage");
-    document.querySelector("#visits").textContent = `${response.value} ${selectedLanguage === 'English' ? "Visits" : "Visite"}`;
+	let visits = document.querySelector("#visits").textContent;
+    document.querySelector("#visits").textContent = `${response.value} ${visits}`;
 }
 
 const checkHeaderName = () => {
@@ -79,11 +99,6 @@ const checkHeaderName = () => {
 		fHeader.style.transition = ".5s linear";
 	}
 };
-
-const countVisit = () => {
-	//contatore visite 
-	// https://medium.com/@codefoxx/how-to-count-the-number-of-visits-on-your-website-with-html-css-javascript-and-the-count-api-2f99b42b5990
-}
 
 (function () {
 	// Global variables
@@ -119,7 +134,7 @@ const countVisit = () => {
 			lightDynamicGalleryItem: $('[data-lightgallery="dynamic"]'),
 			// materialParallax: $('.parallax-container'),
 			// mailchimp: $('.mailchimp-mailform'),
-			owl: $('.owl-carousel'),
+			// owl: $('.owl-carousel'),
 			popover: $('[data-toggle="popover"]'),
 			// progressLinear: $('.progress-linear'),
 			preloader: $('.preloader'),
@@ -140,7 +155,7 @@ const countVisit = () => {
 			// circleJPlayer: $('.jp-player-circle-init'),
 			// jPlayerVideo: $('.jp-video-init'),
 			// countDown: $('.countdown'),
-			stepper: $('input[type="number"]'),
+			// stepper: $('input[type="number"]'),
 			// slick: $('.slick-slider'),
 			// vide: $('.bg-vide'),
 			// customWaypoints: $('[data-custom-scroll-to]'),
@@ -182,8 +197,8 @@ const countVisit = () => {
 				target: document.querySelector('.page'),
 				delay: 0,
 				duration: 100,
-				classIn: 'fadeIn',
-				classOut: 'fadeOut',
+				classIn: '',
+				classOut: '',
 				classActive: 'animated',
 				conditions: function (event, link) {
 					return link && !/(\#|javascript:void\(0\)|javascript:;|callto:|tel:|mailto:|:\/\/)/.test(link) && !event.currentTarget.hasAttribute('data-lightgallery');
@@ -194,9 +209,10 @@ const countVisit = () => {
 				// 	}, options.duration * .75);
 				// },
 				onReady: function () {
-					checkSelectedLanguage();
+					checkPreviousPage();
 					checkHeaderName();
-					if (window.location.href.includes("progetti")) {
+					scrollToTop();
+					if (location.href.includes("progetti") || window.location.href.includes("projects")) {
 						getAlbums();
 					}
 					plugins.preloader.addClass('loaded');
@@ -204,9 +220,19 @@ const countVisit = () => {
 				}
 			});
 		}
+		
+		const checkPreviousPage = () => {
+			let previousPage = document.referrer;
+			if (isPreviousPageInEnglish(previousPage) && location.href.includes("index")) {
+				console.log("precedente in eng")
+			}
+		}
 
+		const isPreviousPageInEnglish = (previousPage) => {
+			return (previousPage.includes("about") || previousPage.includes("projects") || previousPage.includes("contacts"));
+		}
 		const getAlbums = async () => {
-			const response = await fetch("website_data/progetti.json", {
+			const response = await fetch("/website_data/progetti.json", {
 				method: 'GET',
 				headers: {
 					'Accept': 'application/json',
@@ -1330,13 +1356,13 @@ const countVisit = () => {
 		}
 
 		// Owl carousel
-		if (plugins.owl.length) {
-			for (var i = 0; i < plugins.owl.length; i++) {
-				var carousel = $(plugins.owl[i]);
-				plugins.owl[i].owl = carousel;
-				initOwlCarousel(carousel);
-			}
-		}
+		// if (plugins.owl.length) {
+		// 	for (var i = 0; i < plugins.owl.length; i++) {
+		// 		var carousel = $(plugins.owl[i]);
+		// 		plugins.owl[i].owl = carousel;
+		// 		initOwlCarousel(carousel);
+		// 	}
+		// }
 
 		// WOW
 		// if ($html.hasClass("wow-animation") && plugins.wow.length && !isNoviBuilder && isDesktop) {
@@ -2000,14 +2026,14 @@ const countVisit = () => {
 		// }
 
 		// Stepper
-		if (plugins.stepper.length) {
-			plugins.stepper.stepper({
-				labels: {
-					up: "",
-					down: ""
-				}
-			});
-		}
+		// if (plugins.stepper.length) {
+		// 	plugins.stepper.stepper({
+		// 		labels: {
+		// 			up: "",
+		// 			down: ""
+		// 		}
+		// 	});
+		// }
 
 		// Slick carousel
 		// if (plugins.slick.length) {
