@@ -15330,23 +15330,28 @@ div#tracks-gallery {
 
 .track-title {
 	position: absolute;
-	display: flex;
-	width: 100%;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
-	opacity: 0;
-	font-weight: bold;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    z-index: 9999;
+    background: #0000008a;
+    font-weight: bold;
+    color: white;
+	transition: .15s linear;
 }
 
 .card-track:hover .hoverable-album {
 	width: 100%;
-	opacity: 0.25;
 	transition: .15s linear;
+	filter: grayscale(1);
 }
 
 .hoverable-album { 
 	width: 100%;
+	transition: .15s linear;
 }
 
 .bold-text {
