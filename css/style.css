@@ -11394,7 +11394,7 @@ a.link-social:hover::after {
 }
 
 section.section-lg:first-of-type {
-	padding: 100px 0;
+	padding: 5% 0;
 }
 
 section.section-video {
@@ -15347,6 +15347,7 @@ div#tracks-gallery {
 	width: 100%;
 	transition: .15s linear;
 	filter: grayscale(1);
+	-webkit-filter: grayscale(1);
 }
 
 .hoverable-album { 
@@ -15435,4 +15436,8 @@ p.languages {
 
 .icon.novi-icon.icon-primary {
     color: #878787;
+}
+
+.carousel-caption {
+	color: #fff;
 }
