@@ -235,8 +235,8 @@ const checkHeaderName = () => {
 			const response = await fetch("/website_data/progetti.json", {
 				method: 'GET',
 				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
+					'Accept': 'application../json',
+					'Content-Type': 'application../json'
 				}
 			});
 			response.json().then(data => {
@@ -902,7 +902,7 @@ const checkHeaderName = () => {
 				}
 			}
 
-			$.getScript('//maps.google.com/maps/api/js?' + (key ? 'key=' + key + '&' : '') + 'sensor=false&libraries=geometry,places&v=quarterly', function () {
+			$.getScript('//maps.google.com/maps/api../js?' + (key ? 'key=' + key + '&' : '') + 'sensor=false&libraries=geometry,places&v=quarterly', function () {
 				var head = document.getElementsByTagName('head')[0],
 					insertBefore = head.insertBefore;
 
