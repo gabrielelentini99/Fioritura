@@ -232,7 +232,7 @@ const checkHeaderName = () => {
 			return (previousPage.includes("about") || previousPage.includes("projects") || previousPage.includes("contacts"));
 		}
 		const getAlbums = async () => {
-			const response = await fetch("/website_data/progetti.json", {
+			const response = await fetch("../website_data/progetti.json", {
 				method: 'GET',
 				headers: {
 					'Accept': 'application../json',
@@ -1310,7 +1310,8 @@ const checkHeaderName = () => {
 					if (url = $this.attr("data-slide-bg")) {
 						$this.css({
 							"background-image": "url(" + url + ")",
-							"background-size": "cover"
+							"background-size": "cover",
+							"background-repeat": "no-repeat"
 						})
 					}
 				}
