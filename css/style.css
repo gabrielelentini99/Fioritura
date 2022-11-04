@@ -15447,3 +15447,13 @@ p.languages {
 	position: relative;
 	z-index: 1000;
 }
+
+.carousel-inner {
+	max-height: 660px;
+}
+
+span.breadcrubms-title {
+    background: black;
+    padding: 8px;
+	opacity: 0.8;
+}
