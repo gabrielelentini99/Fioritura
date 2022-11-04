@@ -235,8 +235,8 @@ const checkHeaderName = () => {
 			const response = await fetch("../website_data/progetti.json", {
 				method: 'GET',
 				headers: {
-					'Accept': 'application../json',
-					'Content-Type': 'application../json'
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
 				}
 			});
 			response.json().then(data => {
@@ -249,13 +249,14 @@ const checkHeaderName = () => {
 
 		const assignDataToTrack = (album, albumsSection) => {
 			let card = document.createElement("div");
-			let desc = document.createElement("div");
+			let desc = document.createElement("a");
 			desc.innerHTML = album.title;
 			desc.classList.add("track-title");
 			card.appendChild(desc);
 			let link = document.createElement("a");
-			link.href = album.link;
-			link.target = '_blank';
+			desc.href = album.link;
+			link.classList.add("linkTo");
+			desc.target = '_blank';
 			card.classList.add("col-md-2", "col-sm-12", "card-track");
 			let image = document.createElement("img");
 			image.src = album.cover;

@@ -15339,7 +15339,7 @@ div#tracks-gallery {
     z-index: 9999;
     background: #0000008a;
     font-weight: bold;
-    color: white;
+    color: white !important;
 	transition: .15s linear;
 }
 
@@ -15418,6 +15418,7 @@ div#tracks-gallery {
 
 #visits {
 	color: var(--black);
+	font-weight: bold;
 }
 
 img.lang-flag {
@@ -15440,4 +15441,9 @@ p.languages {
 
 .carousel-caption {
 	color: #fff;
+}
+
+.linkTo {
+	position: relative;
+	z-index: 1000;
 }
