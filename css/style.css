@@ -10418,10 +10418,6 @@ a:active {
 	color: var(--black);
 }
 
-a:hover {
-	color: #2b98a2;
-}
-
 a[href*='tel'],
 a[href*='mailto'] {
 	white-space: nowrap;
@@ -10990,7 +10986,7 @@ a.link-social:hover::after {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(255, 255, 255, 0.1);
+	background-color: black;
 	transform: translate(10px, 10px);
 	transition: all 0.3s ease-in-out;
 }
@@ -11248,6 +11244,7 @@ a.link-social:hover::after {
 
 .box-icon-classic-title {
 	margin-top: 17px;
+	margin-bottom: 20px;
 	font-weight: 700;
 }
 
@@ -11261,7 +11258,10 @@ a.link-social:hover::after {
 }
 
 .box-icon-classic-list a:hover {
-	color: var(--black);
+    background: white;
+    color: #000;
+    border: 2px solid #0000008c;
+    font-weight: bold;
 }
 
 *+.box-comment {
@@ -15309,7 +15309,7 @@ span.active {
 	color: var(--lighter-grey);
 }
 
-.contact-click {
+.contact-click, .where {
 	font-size: 17px;
 }
 
@@ -15321,6 +15321,8 @@ div#tracks-gallery {
 	cursor: pointer;
 	padding: 0;
 	border: 8px solid var(--white);
+	position: relative;
+    z-index: 500;
 }
 
 .card-track:hover .track-title {
@@ -15457,3 +15459,16 @@ span.breadcrubms-title {
     padding: 8px;
 	opacity: 0.8;
 }
+
+a.contact-click {
+    background: black;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 50px;
+	border: 2px solid transparent;
+}
+
+a.contact-click.where {
+	background: #fff;
+}
+
