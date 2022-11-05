@@ -74,6 +74,7 @@
 .page {
 	opacity: 1;
 }
+
 * {
 	font-family: 'Quicksand' !important;
 }
@@ -1352,6 +1353,7 @@ html:not(.lt-ie10) .not-animated {
 	transition: .45s all ease-in-out;
 	transform: translate3d(0, 100px, 0);
 	border-radius: 10em;
+	z-index: 9999;
 }
 
 .ui-to-top:hover {
@@ -1607,9 +1609,21 @@ html.tablet .ui-to-top {
 	color: var(--black);
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
 	color: var(--black);
 }
+
 .rd-navbar-search-toggle {
 	background: none;
 	border: none;
@@ -2059,7 +2073,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	margin: 0;
 	height: auto;
 	text-align: left;
-    border-bottom: 1px solid #0000003b;
+	border-bottom: 1px solid #0000003b;
 }
 
 .rd-navbar-fixed .rd-nav-item {
@@ -10456,7 +10470,7 @@ a[href*='mailto'] {
 }
 
 .socialite:hover {
-    background-color: #000;
+	background-color: #000;
 	color: white;
 }
 
@@ -11237,7 +11251,8 @@ a.link-social:hover::after {
 	}
 }
 
-.box-icon-classic .icon, .paypal-icon {
+.box-icon-classic .icon,
+.paypal-icon {
 	height: 45px;
 	line-height: 45px;
 }
@@ -11258,10 +11273,10 @@ a.link-social:hover::after {
 }
 
 .box-icon-classic-list a:hover {
-    background: white;
-    color: #000;
-    border: 2px solid #0000008c;
-    font-weight: bold;
+	background: white;
+	color: #000;
+	border: 2px solid #0000008c;
+	font-weight: bold;
 }
 
 *+.box-comment {
@@ -15273,7 +15288,8 @@ body {
 	display: block;
 }
 
-#grHeader, #fiorituraHeader {
+#grHeader,
+#fiorituraHeader {
 	width: 200px;
 	cursor: pointer;
 }
@@ -15285,10 +15301,10 @@ body {
 
 .flowerIcon {
 	/* filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(54deg) brightness(106%) contrast(101%); */
-    width: 22px;
-    position: relative;
-    bottom: 2px;
-    left: 1px;
+	width: 22px;
+	position: relative;
+	bottom: 2px;
+	left: 1px;
 }
 
 @media (max-width: 1199px) {
@@ -15309,7 +15325,8 @@ span.active {
 	color: var(--lighter-grey);
 }
 
-.contact-click, .where {
+.contact-click,
+.where {
 	font-size: 17px;
 }
 
@@ -15322,7 +15339,7 @@ div#tracks-gallery {
 	padding: 0;
 	border: 8px solid var(--white);
 	position: relative;
-    z-index: 500;
+	z-index: 500;
 }
 
 .card-track:hover .track-title {
@@ -15332,16 +15349,16 @@ div#tracks-gallery {
 
 .track-title {
 	position: absolute;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    z-index: 9999;
-    background: #0000008a;
-    font-weight: bold;
-    color: white !important;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	z-index: 9999;
+	background: #0000008a;
+	font-weight: bold;
+	color: white !important;
 	transition: .15s linear;
 }
 
@@ -15352,21 +15369,21 @@ div#tracks-gallery {
 	-webkit-filter: grayscale(1);
 }
 
-.hoverable-album { 
+.hoverable-album {
 	width: 100%;
 	transition: .15s linear;
 }
 
 .bold-text {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .fa.fa-copyright {
 	position: relative;
-    font-size: 18px;
-    font-style: normal;
-    margin-right: 5px;
-    top: 2px;
+	font-size: 18px;
+	font-style: normal;
+	margin-right: 5px;
+	top: 2px;
 }
 
 .loader {
@@ -15382,7 +15399,8 @@ div#tracks-gallery {
 	background: var(--black);
 	height: 100%;
 	width: 10px;
-	border-radius: 50px;;
+	border-radius: 50px;
+	;
 	margin: 0 5px;
 	animation: animate 1.2s linear infinite;
 }
@@ -15391,6 +15409,7 @@ div#tracks-gallery {
 	50% {
 		height: 20%;
 	}
+
 	100% {
 		height: 100%;
 	}
@@ -15399,21 +15418,27 @@ div#tracks-gallery {
 .stroke:nth-child(1) {
 	animation-delay: 0s;
 }
+
 .stroke:nth-child(2) {
 	animation-delay: 0.3s;
 }
+
 .stroke:nth-child(3) {
 	animation-delay: 0.6s;
 }
+
 .stroke:nth-child(4) {
 	animation-delay: 0.9s;
 }
+
 .stroke:nth-child(5) {
 	animation-delay: 0.6s;
 }
+
 .stroke:nth-child(6) {
 	animation-delay: 0.3s;
 }
+
 .stroke:nth-child(7) {
 	animation-delay: 0s;
 }
@@ -15424,13 +15449,13 @@ div#tracks-gallery {
 }
 
 img.lang-flag {
-    width: 40px;
-    margin: 10px;
+	width: 40px;
+	margin: 10px;
 	cursor: pointer;
 }
 
 p.languages {
-    margin-top: 1px;
+	margin-top: 1px;
 }
 
 #visitsParagraph {
@@ -15438,7 +15463,7 @@ p.languages {
 }
 
 .icon.novi-icon.icon-primary {
-    color: #878787;
+	color: #878787;
 }
 
 .carousel-caption {
@@ -15450,21 +15475,21 @@ p.languages {
 	z-index: 1000;
 }
 
-.carousel-inner {
-	/* max-height: 660px; */
-}
+/* .carousel-inner {
+	max-height: 660px;
+} */
 
 span.breadcrubms-title {
-    background: black;
-    padding: 8px;
+	background: black;
+	padding: 8px;
 	opacity: 0.8;
 }
 
-a.contact-click {
-    background: black;
-    padding: 10px 20px;
-    color: #fff;
-    border-radius: 50px;
+a.contact-click, span.contact-click {
+	background: black;
+	padding: 10px 20px;
+	color: #fff;
+	border-radius: 50px;
 	border: 2px solid transparent;
 }
 
@@ -15473,13 +15498,31 @@ a.contact-click.where {
 }
 
 div.carousel-title {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 350;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 350;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
 	flex-direction: column;
+	font-size: 25px;
+	letter-spacing: 3px;
+}
+
+@media screen and (min-width: 1800px) {
+	div.carousel-title {
+		font-size: 35px;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	span.second-subtitle {
+		font-size: 14px;
+	}
+}
+
+.linkedin-square-icon {
+	width: 47px;
 }
