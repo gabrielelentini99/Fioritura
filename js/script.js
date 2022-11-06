@@ -209,7 +209,6 @@ const checkHeaderName = () => {
 				// 	}, options.duration * .75);
 				// },
 				onReady: function () {
-					checkPreviousPage();
 					checkHeaderName();
 					scrollToTop();
 					if (location.href.includes("progetti") || window.location.href.includes("projects")) {
@@ -221,16 +220,6 @@ const checkHeaderName = () => {
 			});
 		}
 		
-		const checkPreviousPage = () => {
-			let previousPage = document.referrer;
-			if (isPreviousPageInEnglish(previousPage) && location.href.includes("index")) {
-				console.log("precedente in eng")
-			}
-		}
-
-		const isPreviousPageInEnglish = (previousPage) => {
-			return (previousPage.includes("about") || previousPage.includes("projects") || previousPage.includes("contacts"));
-		}
 		const getAlbums = async () => {
 			const response = await fetch("../website_data/progetti.json", {
 				method: 'GET',
@@ -264,7 +253,6 @@ const checkHeaderName = () => {
 			albumsSection.appendChild(card);
 			card.appendChild(link);
 			link.appendChild(image);
-			console.log(albumsSection);
 		}
 
 		// jQuery Count To
