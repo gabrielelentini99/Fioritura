@@ -1,5 +1,5 @@
 "use strict";
-
+	
 const toggleName = () => {
 	let gHeader = document.getElementById("grHeader");
 	let fHeader = document.getElementById("fiorituraHeader");
