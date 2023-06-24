@@ -1,5 +1,5 @@
 "use strict";
-	
+
 const toggleName = () => {
 	let gHeader = document.getElementById("grHeader");
 	let fHeader = document.getElementById("fiorituraHeader");
@@ -24,14 +24,14 @@ const toggleName = () => {
 
 // const checkSelectedLanguage = () => {
 // 	let selectedLanguage = localStorage.getItem("FiorituraLanguage");
-	
+
 // 	if (!selectedLanguage) {
 // 		localStorage.setItem("FiorituraLanguage", "Italian");
 // 		return;
 // 	}
 
 // 	let url = location.href;
-	
+
 // 	if (url.includes("chi-sono")) {
 // 		location.href = "about.html";
 // 		return;
@@ -77,7 +77,7 @@ window.addEventListener("pageshow", (event) => {
 
 const websiteVisits = (response) => {
 	let visits = document.querySelector("#visits").textContent;
-    document.querySelector("#visits").textContent = `${response.value} ${visits}`;
+	document.querySelector("#visits").textContent = `${response.value} ${visits}`;
 }
 
 const checkHeaderName = () => {
@@ -211,7 +211,7 @@ const checkHeaderName = () => {
 				onReady: function () {
 					checkHeaderName();
 					scrollToTop();
-					if (location.href.includes("progetti") || window.location.href.includes("projects")) {
+					if (location.href.includes("home") || window.location.href.includes("projects") || location.href.includes("progetti") || window.location.href.includes("projects")) {
 						getAlbums();
 					}
 					plugins.preloader.addClass('loaded');
@@ -219,7 +219,7 @@ const checkHeaderName = () => {
 				}
 			});
 		}
-		
+
 		const getAlbums = async () => {
 			const response = await fetch("../website_data/progetti.json", {
 				method: 'GET',
@@ -229,10 +229,19 @@ const checkHeaderName = () => {
 				}
 			});
 			response.json().then(data => {
+
 				let albumsSection = document.getElementById("tracks-gallery");
-				data.forEach(a => {
-					assignDataToTrack(a, albumsSection);
-				});
+				if (location.href.includes("home")) {
+					data.forEach((a, idx) => {
+						if (data.length - idx <= 3) {
+							assignDataToTrack(a, albumsSection);
+						}
+					});
+				} else {
+					data.forEach((a) => {
+						assignDataToTrack(a, albumsSection);
+					});
+				}
 			});
 		}
 
