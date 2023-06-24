@@ -15341,9 +15341,12 @@ span.active {
 }
 
 div#tracks-gallery {
+	margin: 10px;
+}
+
+div#tracks-gallery.home {
 	display: flex;
 	justify-content: center;
-	margin: 10px;
 }
 
 .card-track {
